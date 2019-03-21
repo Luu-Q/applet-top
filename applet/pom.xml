@@ -107,7 +107,7 @@
 
         <!-- 项目业务依赖 start -->
         <dependency>
-            <groupId>com.clean.sms</groupId>
+            <groupId>com.applet.sms</groupId>
             <artifactId>sms</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
