@@ -1,0 +1,20 @@
+server:
+  port: 8102
+
+spring:
+  application:
+    name: eureka-node-2
+
+
+eureka:
+  server:
+    enableSelfPreservation: true
+    eviction-interval-timer-in-ms: 60000
+  instance:
+    hostname: eureka-node-2
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eureka-node-1:8101/eureka/

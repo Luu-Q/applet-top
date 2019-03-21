@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.applet.dao.item.ServiceItemSkuMapper" >
+  <resultMap id="BaseResultMap" type="com.applet.model.item.ServiceItemSku" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="item_no" property="itemNo" jdbcType="VARCHAR" />
+    <result column="si_id" property="siId" jdbcType="INTEGER" />
+    <result column="item_path" property="itemPath" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="desall" property="desall" jdbcType="VARCHAR" />
+    <result column="described" property="described" jdbcType="VARCHAR" />
+    <result column="ifHour" property="ifhour" jdbcType="TINYINT" />
+    <result column="minHour" property="minhour" jdbcType="INTEGER" />
+    <result column="lockHour" property="lockhour" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="header_url" property="headerUrl" jdbcType="VARCHAR" />
+    <result column="up_limit" property="upLimit" jdbcType="INTEGER" />
+    <result column="low_limit" property="lowLimit" jdbcType="INTEGER" />
+    <result column="man_num" property="manNum" jdbcType="TINYINT" />
+    <result column="need_area" property="needArea" jdbcType="TINYINT" />
+    <result column="default_val" property="defaultVal" jdbcType="INTEGER" />
+    <result column="is_whenever" property="isWhenever" jdbcType="TINYINT" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="displayorder" property="displayorder" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="is_del" property="isDel" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, item_no, si_id, item_path, unit, desall, described, ifHour, minHour, lockHour,
+    icon, header_url, up_limit, low_limit, man_num, need_area, default_val, is_whenever, 
+    gender, displayorder, status, is_del, create_time, update_time
+  </sql>
+  <select id="selectByKey" resultMap="BaseResultMap" parameterType="com.applet.model.item.ServiceItemSku" >
+    select 
+    <include refid="Base_Column_List" />
+    from service_item_sku
+    <where>
+      <if test="itemNo != null">and item_no = #{itemNo}</if>
+      <if test="siId != null">and si_id = #{siId}</if>
+      <if test="status != null">and status = #{status}</if>
+      <if test="isDel != null">and is_del = #{isDel}</if>
+      <if test="id != null">and id = #{id}</if>
+    </where>
+  </select>
+  <insert id="insert" parameterType="com.applet.model.item.ServiceItemSku" >
+    insert into service_item_sku
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="itemNo != null" >
+        item_no,
+      </if>
+      <if test="siId != null" >
+        si_id,
+      </if>
+      <if test="itemPath != null" >
+        item_path,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="desall != null" >
+        desall,
+      </if>
+      <if test="described != null" >
+        described,
+      </if>
+      <if test="ifhour != null" >
+        ifHour,
+      </if>
+      <if test="minhour != null" >
+        minHour,
+      </if>
+      <if test="lockhour != null" >
+        lockHour,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="headerUrl != null" >
+        header_url,
+      </if>
+      <if test="upLimit != null" >
+        up_limit,
+      </if>
+      <if test="lowLimit != null" >
+        low_limit,
+      </if>
+      <if test="manNum != null" >
+        man_num,
+      </if>
+      <if test="needArea != null" >
+        need_area,
+      </if>
+      <if test="defaultVal != null" >
+        default_val,
+      </if>
+      <if test="isWhenever != null" >
+        is_whenever,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="displayorder != null" >
+        displayorder,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="siId != null" >
+        #{siId,jdbcType=INTEGER},
+      </if>
+      <if test="itemPath != null" >
+        #{itemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="desall != null" >
+        #{desall,jdbcType=VARCHAR},
+      </if>
+      <if test="described != null" >
+        #{described,jdbcType=VARCHAR},
+      </if>
+      <if test="ifhour != null" >
+        #{ifhour,jdbcType=TINYINT},
+      </if>
+      <if test="minhour != null" >
+        #{minhour,jdbcType=INTEGER},
+      </if>
+      <if test="lockhour != null" >
+        #{lockhour,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="headerUrl != null" >
+        #{headerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="upLimit != null" >
+        #{upLimit,jdbcType=INTEGER},
+      </if>
+      <if test="lowLimit != null" >
+        #{lowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="manNum != null" >
+        #{manNum,jdbcType=TINYINT},
+      </if>
+      <if test="needArea != null" >
+        #{needArea,jdbcType=TINYINT},
+      </if>
+      <if test="defaultVal != null" >
+        #{defaultVal,jdbcType=INTEGER},
+      </if>
+      <if test="isWhenever != null" >
+        #{isWhenever,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="displayorder != null" >
+        #{displayorder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.applet.model.item.ServiceItemSku" >
+    update service_item_sku
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNo != null" >
+        item_no = #{itemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="siId != null" >
+        si_id = #{siId,jdbcType=INTEGER},
+      </if>
+      <if test="itemPath != null" >
+        item_path = #{itemPath,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="desall != null" >
+        desall = #{desall,jdbcType=VARCHAR},
+      </if>
+      <if test="described != null" >
+        described = #{described,jdbcType=VARCHAR},
+      </if>
+      <if test="ifhour != null" >
+        ifHour = #{ifhour,jdbcType=TINYINT},
+      </if>
+      <if test="minhour != null" >
+        minHour = #{minhour,jdbcType=INTEGER},
+      </if>
+      <if test="lockhour != null" >
+        lockHour = #{lockhour,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="headerUrl != null" >
+        header_url = #{headerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="upLimit != null" >
+        up_limit = #{upLimit,jdbcType=INTEGER},
+      </if>
+      <if test="lowLimit != null" >
+        low_limit = #{lowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="manNum != null" >
+        man_num = #{manNum,jdbcType=TINYINT},
+      </if>
+      <if test="needArea != null" >
+        need_area = #{needArea,jdbcType=TINYINT},
+      </if>
+      <if test="defaultVal != null" >
+        default_val = #{defaultVal,jdbcType=INTEGER},
+      </if>
+      <if test="isWhenever != null" >
+        is_whenever = #{isWhenever,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="displayorder != null" >
+        displayorder = #{displayorder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

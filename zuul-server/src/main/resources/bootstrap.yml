@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: clean-zuul-server
+
+
+eureka:
+  instance:
+    hostname: localhost:8101
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}/eureka/
+
+#zuul:
+#  routes:
+#    api-a:
+#      path: /api-a/**
+#      serviceId: service-ribbon
+#    api-b:
+#      path: /api-b/**
+#      serviceId: service-feign

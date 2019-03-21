@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: clean-applet
+  zipkin:
+    base-url: http://47.104.67.4:9411
+
+eureka:
+  instance:
+    hostname1: eureka-node-1:8101
+    hostname2: eureka-node-2:8102
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname1}/eureka/,http://${eureka.instance.hostname2}/eureka/
+
+feign:
+  hystrix:
+    enabled: true

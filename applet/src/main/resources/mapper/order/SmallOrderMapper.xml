@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.applet.dao.order.SmallOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.applet.model.order.SmallOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="si_id" property="siId" jdbcType="INTEGER" />
+    <result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="address_remark" property="addressRemark" jdbcType="VARCHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="sum_price" property="sumPrice" jdbcType="DECIMAL" />
+    <result column="additional_money" property="additionalMoney" jdbcType="DECIMAL" />
+    <result column="demand" property="demand" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="trade_id" property="tradeId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, mobile, order_no, si_id, service_name, address_id, address_remark, unit_price, 
+    num, sum_price, additional_money, demand, order_status, trade_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from small_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from small_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.applet.model.order.SmallOrder" >
+    insert into small_order (id, user_id, mobile, 
+      order_no, si_id, service_name, 
+      address_id, address_remark, unit_price, 
+      num, sum_price, additional_money, 
+      demand, order_status, trade_id, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=VARCHAR}, #{siId,jdbcType=INTEGER}, #{serviceName,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=INTEGER}, #{addressRemark,jdbcType=VARCHAR}, #{unitPrice,jdbcType=DECIMAL}, 
+      #{num,jdbcType=INTEGER}, #{sumPrice,jdbcType=DECIMAL}, #{additionalMoney,jdbcType=DECIMAL}, 
+      #{demand,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{tradeId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.applet.model.order.SmallOrder" >
+    insert into small_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="siId != null" >
+        si_id,
+      </if>
+      <if test="serviceName != null" >
+        service_name,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="addressRemark != null" >
+        address_remark,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="sumPrice != null" >
+        sum_price,
+      </if>
+      <if test="additionalMoney != null" >
+        additional_money,
+      </if>
+      <if test="demand != null" >
+        demand,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="tradeId != null" >
+        trade_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="siId != null" >
+        #{siId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceName != null" >
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="addressRemark != null" >
+        #{addressRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="sumPrice != null" >
+        #{sumPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalMoney != null" >
+        #{additionalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="demand != null" >
+        #{demand,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.applet.model.order.SmallOrder" >
+    update small_order
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="siId != null" >
+        si_id = #{siId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceName != null" >
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="addressRemark != null" >
+        address_remark = #{addressRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="sumPrice != null" >
+        sum_price = #{sumPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalMoney != null" >
+        additional_money = #{additionalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="demand != null" >
+        demand = #{demand,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tradeId != null" >
+        trade_id = #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.applet.model.order.SmallOrder" >
+    update small_order
+    set user_id = #{userId,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      si_id = #{siId,jdbcType=INTEGER},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=INTEGER},
+      address_remark = #{addressRemark,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      num = #{num,jdbcType=INTEGER},
+      sum_price = #{sumPrice,jdbcType=DECIMAL},
+      additional_money = #{additionalMoney,jdbcType=DECIMAL},
+      demand = #{demand,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      trade_id = #{tradeId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

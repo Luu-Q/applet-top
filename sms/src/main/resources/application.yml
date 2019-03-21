@@ -1,0 +1,42 @@
+server:
+  port: 8401
+  addressip: 52baojie.cn
+
+spring:
+  redis:
+    host: ${server.addressip}
+    password: luning
+    port: 6380
+    timeout: 1000ms
+    lettuce:
+      pool:
+        min-idle: 0
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 300
+        max-wait: 1000ms
+
+  rabbitmq:
+    host: ${server.addressip}
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+
+http:
+  pool:
+    max-totle: 200
+    max-per-route: 20
+    connect-request-timeout: 5000
+    connect-timeout: 5000
+    socket-timeout: 61000
+
+logging:
+  config: classpath:logback-spring.xml
+
+

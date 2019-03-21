@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.applet.dao.member.CleanMemberMapper">
+    <resultMap id="BaseResultMap" type="com.applet.model.member.CleanMember">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
+        <result column="login_pwd" property="loginPwd" jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="clean_code" property="cleanCode" jdbcType="VARCHAR"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
+        <result column="birthday" property="birthday" jdbcType="BIGINT"/>
+        <result column="mem_email" property="memEmail" jdbcType="VARCHAR"/>
+        <result column="mem_photo" property="memPhoto" jdbcType="VARCHAR"/>
+        <result column="zipcode" property="zipcode" jdbcType="VARCHAR"/>
+        <result column="nationality" property="nationality" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="county" property="county" jdbcType="VARCHAR"/>
+        <result column="addresss" property="addresss" jdbcType="VARCHAR"/>
+        <result column="company" property="company" jdbcType="VARCHAR"/>
+        <result column="alipay" property="alipay" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="mobile_show" property="mobileShow" jdbcType="INTEGER"/>
+        <result column="wechat" property="wechat" jdbcType="VARCHAR"/>
+        <result column="wechat_show" property="wechatShow" jdbcType="INTEGER"/>
+        <result column="qq" property="qq" jdbcType="INTEGER"/>
+        <result column="qq_show" property="qqShow" jdbcType="INTEGER"/>
+        <result column="id_card" property="idCard" jdbcType="VARCHAR"/>
+        <result column="hobby" property="hobby" jdbcType="VARCHAR"/>
+        <result column="signature" property="signature" jdbcType="VARCHAR"/>
+        <result column="resource_os" property="resourceOs" jdbcType="INTEGER"/>
+        <result column="is_del" property="isDel" jdbcType="INTEGER"/>
+        <result column="last_login_time" property="lastLoginTime" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <result column="update_time" property="updateTime" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="Base_Column">
+    id, login_name, login_pwd, salt, clean_code, nick_name, real_name, gender, birthday, 
+    mem_email, mem_photo, zipcode, nationality, province, city, county, addresss, company, 
+    alipay, mobile, mobile_show, wechat, wechat_show, qq, qq_show, id_card, hobby, signature, 
+    resource_os, is_del, last_login_time, create_time, update_time
+  </sql>
+    <select id="selectListByCondition" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column"/>
+        from clean_member
+        <where>
+            <if test="loginName != null">and login_name = #{loginName}</if>
+            <if test="loginPwd != null">and login_pwd = #{loginPwd}</if>
+            <if test="salt != null">and salt = #{salt}</if>
+            <if test="mobile != null">and mobile = #{mobile}</if>
+            <if test="cleanCode != null">and clean_code = #{cleanCode}</if>
+            <if test="id != null">and id = #{id}</if>
+        </where>
+    </select>
+
+
+    <insert id="insert" parameterType="com.applet.model.member.CleanMember">
+        insert into clean_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="loginName != null">login_name,</if>
+            <if test="loginPwd != null">login_pwd,</if>
+            <if test="salt != null">salt,</if>
+            <if test="cleanCode != null">clean_code,</if>
+            <if test="nickName != null">nick_name,</if>
+            <if test="realName != null">real_name,</if>
+            <if test="gender != null">gender,</if>
+            <if test="birthday != null">birthday,</if>
+            <if test="memEmail != null">mem_email,</if>
+            <if test="memPhoto != null">mem_photo,</if>
+            <if test="zipcode != null">zipcode,</if>
+            <if test="nationality != null">nationality,</if>
+            <if test="province != null">province,</if>
+            <if test="city != null">city,</if>
+            <if test="county != null">county,</if>
+            <if test="addresss != null">addresss,</if>
+            <if test="company != null">company,</if>
+            <if test="alipay != null">alipay,</if>
+            <if test="mobile != null">mobile,</if>
+            <if test="mobileShow != null">mobile_show,</if>
+            <if test="wechat != null">wechat,</if>
+            <if test="wechatShow != null">wechat_show,</if>
+            <if test="qq != null">qq,</if>
+            <if test="qqShow != null">qq_show,</if>
+            <if test="idCard != null">id_card,</if>
+            <if test="hobby != null">hobby,</if>
+            <if test="signature != null">signature,</if>
+            <if test="resourceOs != null">resource_os,</if>
+            <if test="isDel != null">is_del,</if>
+            <if test="lastLoginTime != null">last_login_time,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="loginName != null">#{loginName},</if>
+            <if test="loginPwd != null">#{loginPwd},</if>
+            <if test="salt != null">#{salt},</if>
+            <if test="cleanCode != null">#{cleanCode},</if>
+            <if test="nickName != null">#{nickName},</if>
+            <if test="realName != null">#{realName},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="birthday != null">#{birthday},</if>
+            <if test="memEmail != null">#{memEmail},</if>
+            <if test="memPhoto != null">#{memPhoto},</if>
+            <if test="zipcode != null">#{zipcode},</if>
+            <if test="nationality != null">#{nationality},</if>
+            <if test="province != null">#{province},</if>
+            <if test="city != null">#{city},</if>
+            <if test="county != null">#{county},</if>
+            <if test="addresss != null">#{addresss},</if>
+            <if test="company != null">#{company},</if>
+            <if test="alipay != null">#{alipay},</if>
+            <if test="mobile != null">#{mobile},</if>
+            <if test="mobileShow != null">#{mobileShow},</if>
+            <if test="wechat != null">#{wechat},</if>
+            <if test="wechatShow != null">#{wechatShow},</if>
+            <if test="qq != null">#{qq},</if>
+            <if test="qqShow != null">#{qqShow},</if>
+            <if test="idCard != null">#{idCard},</if>
+            <if test="hobby != null">#{hobby},</if>
+            <if test="signature != null">#{signature},</if>
+            <if test="resourceOs != null">#{resourceOs},</if>
+            <if test="isDel != null">#{isDel},</if>
+            <if test="lastLoginTime != null">#{lastLoginTime},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime}</if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.applet.model.member.CleanMember">
+        update clean_member
+        <trim prefix="set" suffixOverrides=",">
+            <if test="loginName != null">login_name = #{loginName},</if>
+            <if test="loginPwd != null">login_pwd = #{loginPwd},</if>
+            <if test="salt != null">salt = #{salt},</if>
+            <if test="cleanCode != null">clean_code = #{cleanCode},</if>
+            <if test="nickName != null">nick_name = #{nickName},</if>
+            <if test="realName != null">real_name = #{realName},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="birthday != null">birthday = #{birthday},</if>
+            <if test="memEmail != null">mem_email = #{memEmail},</if>
+            <if test="memPhoto != null">mem_photo = #{memPhoto},</if>
+            <if test="zipcode != null">zipcode = #{zipcode},</if>
+            <if test="nationality != null">nationality = #{nationality},</if>
+            <if test="province != null">province = #{province},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="county != null">county = #{county},</if>
+            <if test="addresss != null">addresss = #{addresss},</if>
+            <if test="company != null">company = #{company},</if>
+            <if test="alipay != null">alipay = #{alipay},</if>
+            <if test="mobile != null">mobile = #{mobile},</if>
+            <if test="mobileShow != null">mobile_show = #{mobileShow},</if>
+            <if test="wechat != null">wechat = #{wechat},</if>
+            <if test="wechatShow != null">wechat_show = #{wechatShow},</if>
+            <if test="qq != null">qq = #{qq},</if>
+            <if test="qqShow != null">qq_show = #{qqShow},</if>
+            <if test="douyin != null">douyin = #{douyin},</if>
+            <if test="douyinShow != null">douyin_show = #{douyinShow},</if>
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="hobby != null">hobby = #{hobby},</if>
+            <if test="signature != null">signature = #{signature},</if>
+            <if test="introduceId != null">introduce_id = #{introduceId},</if>
+            <if test="introduceType != null">introduce_type = #{introduceType},</if>
+            <if test="lastLoginTime != null">last_login_time = #{lastLoginTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="zh_cn" class="member" ng-class="$root.htmlClass" ng-app="zhuzi-ucenter" ng-controller="appController">
+<head>
+    <style type="text/css">
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+
+    ng\:form {
+        display: block;
+    }
+
+    .ng-animate-shim {
+        visibility: hidden;
+    }
+
+    .ng-anchor {
+        position: absolute;
+    }</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <title ng-bind="title?title+' - 网站管理中心':''" class="ng-binding"></title>
+    <meta name="keywords" content="H5页面制作工具、响应式网站、傻瓜式自助建站系统、企业建站、个人官网建设、免费企业建站、网站建设、自助建站、免费网站">
+    <meta name="description"
+          content="全新的H5响应式建站系统，可视化操作让您不懂代码也能快速创建漂亮的专业级官网，无论是企业建站还是移动建站我们都提供免费的独立域名、免费托管等网站建设一站式综合服务。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .spinner {
+        width: 140px;
+        height: 70px;
+        text-align: center;
+        font-size: 13px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -35px 0 0 -70px
+    }
+
+    .sk-cube-grid {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 10px
+    }
+
+    .sk-cube-grid .sk-cube {
+        width: 33%;
+        height: 33%;
+        background-color: #eee;
+        float: left;
+        -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+        animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out
+    }
+
+    .sk-cube-grid .sk-cube1 {
+        -webkit-animation-delay: .2s;
+        animation-delay: .2s
+    }
+
+    .sk-cube-grid .sk-cube2 {
+        -webkit-animation-delay: .3s;
+        animation-delay: .3s
+    }
+
+    .sk-cube-grid .sk-cube3 {
+        -webkit-animation-delay: .4s;
+        animation-delay: .4s
+    }
+
+    .sk-cube-grid .sk-cube4 {
+        -webkit-animation-delay: .1s;
+        animation-delay: .1s
+    }
+
+    .sk-cube-grid .sk-cube5 {
+        -webkit-animation-delay: .2s;
+        animation-delay: .2s
+    }
+
+    .sk-cube-grid .sk-cube6 {
+        -webkit-animation-delay: .3s;
+        animation-delay: .3s
+    }
+
+    .sk-cube-grid .sk-cube7 {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s
+    }
+
+    .sk-cube-grid .sk-cube8 {
+        -webkit-animation-delay: .1s;
+        animation-delay: .1s
+    }
+
+    .sk-cube-grid .sk-cube9 {
+        -webkit-animation-delay: .2s;
+        animation-delay: .2s
+    }
+
+    @-webkit-keyframes sk-cubeGridScaleDelay {
+        0%, 100%, 70% {
+            -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1)
+        }
+        35% {
+            -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1)
+        }
+    }
+
+    @keyframes sk-cubeGridScaleDelay {
+        0%, 100%, 70% {
+            -webkit-transform: scale3D(1, 1, 1);
+            transform: scale3D(1, 1, 1)
+        }
+        35% {
+            -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1)
+        }
+    }</style>
+    <script>
+        (function () {
+            var whiteHost = ["zhuzi.me", "zhuzi.com.cn"],
+                whiteLen = 0,
+                exist = false;
+
+            whiteHost.push("zbj.com");
+
+            whiteLen = whiteHost.length;
+            if (window.top !== window.self) {
+                for (var i = 0; i < whiteLen; i++) {
+                    if (location.host.lastIndexOf(whiteHost[i]) == (location.host.length - whiteHost[i].length)) {
+                        exist = true;
+                    }
+                }
+                if (!exist) {
+                    window.top.location = window.location;
+                }
+            }
+        })();
+
+        // IE浏览器进行跳转
+        (function () {
+            function getBrowser(getVersion) {
+                var ua_str = navigator.userAgent.toLowerCase(), ie_Tridents, trident, match_str, ie_aer_rv,
+                    browser_chi_Type;
+
+                if ("ActiveXObject" in self) {
+                    ie_aer_rv = (match_str = ua_str.match(/msie ([\d.]+)/)) ? match_str[1] :
+                        (match_str = ua_str.match(/rv:([\d.]+)/)) ? match_str[1] : 0;
+
+                    // ie: Indicate the really version of current IE browser.
+                    ie_Tridents = {"trident/7.0": 11, "trident/6.0": 10, "trident/5.0": 9, "trident/4.0": 8};
+                    trident = (match_str = ua_str.match(/(trident\/[\d.]+|edge\/[\d.]+)/)) ? match_str[1] : undefined;
+                    browser_chi_Type = (ie_Tridents[trident] || ie_aer_rv) > 0 ? "ie" : undefined;
+                } else {
+                    browser_chi_Type = (match_str = ua_str.match(/edge\/([\d.]+)/)) ? "ie" :
+                        //判断firefox 浏览器
+                        (match_str = ua_str.match(/firefox\/([\d.]+)/)) ? "firefox" :
+                            //判断chrome 浏览器
+                            (match_str = ua_str.match(/chrome\/([\d.]+)/)) ? "chrome" :
+                                //判断opera 浏览器
+                                (match_str = ua_str.match(/opera.([\d.]+)/)) ? "opera" :
+                                    //判断safari 浏览器
+                                    (match_str = ua_str.match(/version\/([\d.]+).*safari/)) ? "safari" : undefined;
+                }
+                var verNum, verStr;
+                verNum = trident && ie_Tridents[trident] ? ie_Tridents[trident] : match_str[1];
+                verStr = (getVersion != undefined) ? browser_chi_Type + "/" + verNum : browser_chi_Type;
+                return verStr;
+            }
+
+            if (getBrowser() == 'ie') {
+                location.href = "/ie";
+            }
+        })()
+    </script>
+    <link rel="stylesheet"
+          href="//bk.st.styleweb.com.cn/ucenter/v2/??css/bootstrap.css,css/animate.css,css/font-awesome.min.css,css/simple-line-icons.css,css/font.css?2018123164344">
+    <link rel="stylesheet"
+          href="//bk.st.styleweb.com.cn/ucenter/v2/??css/loading-bar.min.css,css/sweetalert.css,font/style.css,css/style.css,css/uc_theme/bgColor.css?2018123164344">
+    <link rel="stylesheet" href="//bk.st.styleweb.com.cn/ucenter/v2/css/uc_theme/appGreen.css?2018123164344">
+    <script type="text/javascript" src="//static.geetest.com/static/tools/gt.js"></script>
+    <script type="text/javascript" src="//bk.st.styleweb.com.cn/ucenter/v2/js/bundle.js?201812316577"></script>
+    <script type="text/javascript"
+            src="//bk.st.styleweb.com.cn/ucenter/v2/js/jquery-3.1.0.min.js?201812316577"></script>
+    <script type="text/javascript" src="//bk.st.styleweb.com.cn/ucenter/v2/js/app.js?201812316577"></script>
+    <style type="text/css">.biu-instance {
+        top: 0;
+        left: 0;
+        right: 0;
+        position: fixed;
+        background-color: #fff;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e2e2;
+        z-index: 1;
+        animation-name: biu-down;
+        animation-duration: .3s;
+        font-size: 1rem;
+        transform: translateY(-100%);
+        transition: transform .3s ease
+    }
+
+    .biu-instance.biu-pop {
+        width: 400px;
+        max-width: 80%;
+        left: 50%;
+        right: none;
+        transform: translateX(-50%) translateY(-110%);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+        border-bottom: none;
+        border-radius: 0 0 2px 2px
+    }
+
+    .biu-main {
+        padding: 0 40px 0 20px;
+        word-wrap: break-word
+    }
+
+    .biu-close {
+        float: right;
+        cursor: pointer;
+        width: 20px;
+        margin-right: 10px;
+        border-radius: 2px;
+        text-align: center
+    }
+
+    .biu-shown {
+        transform: translateY(0)
+    }
+
+    .biu-shown.biu-pop {
+        transform: translateX(-50%) translateY(0)
+    }
+
+    .biu-info, .biu-success, biu-warning {
+        color: #fff
+    }
+
+    .biu-default {
+        color: #333;
+        background-color: #fff;
+        border-color: #e2e2e2
+    }
+
+    .biu-default .biu-close:hover {
+        background-color: #e2e2e2
+    }
+
+    .biu-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6
+    }
+
+    .biu-success .biu-close:hover {
+        background-color: #d6e9c6
+    }
+
+    .biu-info {
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1
+    }
+
+    .biu-info .biu-close:hover {
+        background-color: #bce8f1
+    }
+
+    .biu-warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc
+    }
+
+    .biu-warning .biu-close:hover {
+        background-color: #faebcc
+    }
+
+    .biu-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1
+    }
+
+    .biu-danger .biu-close:hover {
+        background-color: #ebccd1
+    }</style>
+    <style type="text/css">.do-color-group {
+        border-radius: 100%;
+        height: 22px;
+        width: 22px;
+        border: 1px solid #ccc;
+        cursor: pointer
+    }
+
+    .do-color-list {
+        display: none;
+        position: absolute;
+        top: 32px;
+        z-index: 9;
+        background-color: #f5f5f5;
+        width: 250px;
+        padding: 6px;
+        border: 1px solid #ccc
+    }
+
+    .do-color-list ul {
+        overflow: hidden;
+        padding: 0;
+        margin: 0
+    }
+
+    .do-color-list li {
+        float: left;
+        width: 12%;
+        position: relative;
+        padding: 1px !important
+    }
+
+    .do-color-list li > div {
+        padding-top: 100%
+    }</style>
+    <style type="text/css">/*!
+ * Cropper v0.1.0
+ * https://github.com/fengyuanchen/cropperjs
+ *
+ * Copyright (c) 2015 Fengyuan Chen
+ * Released under the MIT license
+ *
+ * Date: 2015-09-25T09:19:58.017Z
+ */
+    .cropper-container {
+        position: relative;
+        overflow: hidden;
+        font-size: 0;
+        line-height: 0;
+        -ms-touch-action: none;
+        touch-action: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        direction: ltr !important;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none
+    }
+
+    .cropper-container img {
+        display: block;
+        width: 100%;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: 100%;
+        min-height: 0 !important;
+        max-height: none !important;
+        image-orientation: 0deg !important
+    }
+
+    .cropper-canvas, .cropper-crop-box, .cropper-drag-box, .cropper-modal {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0
+    }
+
+    .cropper-drag-box {
+        background-color: #fff;
+        filter: alpha(opacity=0);
+        opacity: 0
+    }
+
+    .cropper-modal {
+        background-color: #000;
+        filter: alpha(opacity=50);
+        opacity: .5
+    }
+
+    .cropper-view-box {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        outline: 1px solid #39f;
+        outline-color: rgba(51, 153, 255, .75)
+    }
+
+    .cropper-dashed {
+        position: absolute;
+        display: block;
+        filter: alpha(opacity=50);
+        border: 0 dashed #eee;
+        opacity: .5
+    }
+
+    .cropper-dashed.dashed-h {
+        top: 33.33333%;
+        left: 0;
+        width: 100%;
+        height: 33.33333%;
+        border-top-width: 1px;
+        border-bottom-width: 1px
+    }
+
+    .cropper-dashed.dashed-v {
+        top: 0;
+        left: 33.33333%;
+        width: 33.33333%;
+        height: 100%;
+        border-right-width: 1px;
+        border-left-width: 1px
+    }
+
+    .cropper-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 0;
+        height: 0;
+        filter: alpha(opacity=75);
+        opacity: .75
+    }
+
+    .cropper-center:after, .cropper-center:before {
+        position: absolute;
+        display: block;
+        content: " ";
+        background-color: #eee
+    }
+
+    .cropper-center:before {
+        top: 0;
+        left: -3px;
+        width: 7px;
+        height: 1px
+    }
+
+    .cropper-center:after {
+        top: -3px;
+        left: 0;
+        width: 1px;
+        height: 7px
+    }
+
+    .cropper-face, .cropper-line, .cropper-point {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        filter: alpha(opacity=10);
+        opacity: .1
+    }
+
+    .cropper-face {
+        top: 0;
+        left: 0;
+        background-color: #fff
+    }
+
+    .cropper-line {
+        background-color: #39f
+    }
+
+    .cropper-line.line-e {
+        top: 0;
+        right: -3px;
+        width: 5px;
+        cursor: e-resize
+    }
+
+    .cropper-line.line-n {
+        top: -3px;
+        left: 0;
+        height: 5px;
+        cursor: n-resize
+    }
+
+    .cropper-line.line-w {
+        top: 0;
+        left: -3px;
+        width: 5px;
+        cursor: w-resize
+    }
+
+    .cropper-line.line-s {
+        bottom: -3px;
+        left: 0;
+        height: 5px;
+        cursor: s-resize
+    }
+
+    .cropper-point {
+        width: 5px;
+        height: 5px;
+        background-color: #39f;
+        filter: alpha(opacity=75);
+        opacity: .75
+    }
+
+    .cropper-point.point-e {
+        top: 50%;
+        right: -3px;
+        margin-top: -3px;
+        cursor: e-resize
+    }
+
+    .cropper-point.point-n {
+        top: -3px;
+        left: 50%;
+        margin-left: -3px;
+        cursor: n-resize
+    }
+
+    .cropper-point.point-w {
+        top: 50%;
+        left: -3px;
+        margin-top: -3px;
+        cursor: w-resize
+    }
+
+    .cropper-point.point-s {
+        bottom: -3px;
+        left: 50%;
+        margin-left: -3px;
+        cursor: s-resize
+    }
+
+    .cropper-point.point-ne {
+        top: -3px;
+        right: -3px;
+        cursor: ne-resize
+    }
+
+    .cropper-point.point-nw {
+        top: -3px;
+        left: -3px;
+        cursor: nw-resize
+    }
+
+    .cropper-point.point-sw {
+        bottom: -3px;
+        left: -3px;
+        cursor: sw-resize
+    }
+
+    .cropper-point.point-se {
+        right: -3px;
+        bottom: -3px;
+        width: 20px;
+        height: 20px;
+        cursor: se-resize;
+        filter: alpha(opacity=100);
+        opacity: 1
+    }
+
+    .cropper-point.point-se:before {
+        position: absolute;
+        right: -50%;
+        bottom: -50%;
+        display: block;
+        width: 200%;
+        height: 200%;
+        content: " ";
+        background-color: #39f;
+        filter: alpha(opacity=0);
+        opacity: 0
+    }
+
+    @media (min-width: 768px) {
+        .cropper-point.point-se {
+            width: 15px;
+            height: 15px
+        }
+    }
+
+    @media (min-width: 992px) {
+        .cropper-point.point-se {
+            width: 10px;
+            height: 10px
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .cropper-point.point-se {
+            width: 5px;
+            height: 5px;
+            filter: alpha(opacity=75);
+            opacity: .75
+        }
+    }
+
+    .cropper-bg {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC")
+    }
+
+    .cropper-invisible {
+        filter: alpha(opacity=0);
+        opacity: 0
+    }
+
+    .cropper-hide {
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 0
+    }
+
+    .cropper-hidden {
+        display: none !important
+    }
+
+    .cropper-move {
+        cursor: move
+    }
+
+    .cropper-crop {
+        cursor: crosshair
+    }
+
+    .cropper-disabled .cropper-drag-box, .cropper-disabled .cropper-face, .cropper-disabled .cropper-line, .cropper-disabled .cropper-point {
+        cursor: not-allowed
+    }</style>
+    <style type="text/css">/*!
+ * ui-select
+ * http://github.com/angular-ui/ui-select
+ * Version: 0.19.8 - 2017-04-18T05:43:43.881Z
+ * License: MIT
+ */
+    .ui-select-highlight {
+        font-weight: 700
+    }
+
+    .ui-select-offscreen {
+        clip: rect(0 0 0 0) !important;
+        width: 1px !important;
+        height: 1px !important;
+        border: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        outline: 0 !important;
+        left: 0 !important;
+        top: 0 !important
+    }
+
+    .selectize-control.single > .selectize-input > input, .selectize-control > .selectize-dropdown {
+        width: 100%
+    }
+
+    .ui-select-choices-row:hover {
+        background-color: #f5f5f5
+    }
+
+    .ng-dirty.ng-invalid > a.select2-choice {
+        border-color: #d44950
+    }
+
+    .select2-result-single {
+        padding-left: 0
+    }
+
+    .select2-locked > .select2-search-choice-close, .select-locked > .ui-select-match-close {
+        display: none
+    }
+
+    body > .select2-container.open {
+        z-index: 9999
+    }
+
+    .ui-select-container.select2.direction-up .ui-select-match, .ui-select-container[theme=select2].direction-up .ui-select-match {
+        border-radius: 0 0 4px 4px
+    }
+
+    .ui-select-container.select2.direction-up .ui-select-dropdown, .ui-select-container[theme=select2].direction-up .ui-select-dropdown {
+        border-radius: 4px 4px 0 0;
+        border-top-width: 1px;
+        border-top-style: solid;
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, .25);
+        margin-top: -4px
+    }
+
+    .ui-select-container.select2.direction-up .ui-select-dropdown .select2-search, .ui-select-container[theme=select2].direction-up .ui-select-dropdown .select2-search {
+        margin-top: 4px
+    }
+
+    .ui-select-container.select2.direction-up.select2-dropdown-open .ui-select-match, .ui-select-container[theme=select2].direction-up.select2-dropdown-open .ui-select-match {
+        border-bottom-color: #5897fb
+    }
+
+    .ui-select-container[theme=select2] .ui-select-dropdown .ui-select-search-hidden, .ui-select-container[theme=select2] .ui-select-dropdown .ui-select-search-hidden input {
+        opacity: 0;
+        height: 0;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
+        border: 0
+    }
+
+    .selectize-input.selectize-focus {
+        border-color: #007fbb !important
+    }
+
+    .selectize-control.multi > .selectize-input > input {
+        margin: 0 !important
+    }
+
+    .ng-dirty.ng-invalid > div.selectize-input {
+        border-color: #d44950
+    }
+
+    .ui-select-container[theme=selectize].direction-up .ui-select-dropdown {
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, .25);
+        margin-top: -2px
+    }
+
+    .ui-select-container[theme=selectize] input.ui-select-search-hidden {
+        opacity: 0;
+        height: 0;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        width: 0
+    }
+
+    .btn-default-focus {
+        color: #333;
+        background-color: #ebebeb;
+        border-color: #adadad;
+        text-decoration: none;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+    }
+
+    .ui-select-bootstrap .ui-select-toggle {
+        position: relative
+    }
+
+    .ui-select-bootstrap .ui-select-toggle > .caret {
+        position: absolute;
+        height: 10px;
+        top: 50%;
+        right: 10px;
+        margin-top: -2px
+    }
+
+    .input-group > .ui-select-bootstrap.dropdown {
+        position: static
+    }
+
+    .input-group > .ui-select-bootstrap > input.ui-select-search.form-control {
+        border-radius: 4px 0 0 4px
+    }
+
+    .input-group > .ui-select-bootstrap > input.ui-select-search.form-control.direction-up {
+        border-radius: 4px 0 0 4px !important
+    }
+
+    .ui-select-bootstrap .ui-select-search-hidden {
+        opacity: 0;
+        height: 0;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
+        border: 0
+    }
+
+    .ui-select-bootstrap > .ui-select-match > .btn {
+        text-align: left !important
+    }
+
+    .ui-select-bootstrap > .ui-select-match > .caret {
+        position: absolute;
+        top: 45%;
+        right: 15px
+    }
+
+    .ui-select-bootstrap > .ui-select-choices, .ui-select-bootstrap > .ui-select-no-choice {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        overflow-x: hidden;
+        margin-top: -1px
+    }
+
+    body > .ui-select-bootstrap.open {
+        z-index: 1000
+    }
+
+    .ui-select-multiple.ui-select-bootstrap {
+        height: auto;
+        padding: 3px 3px 0
+    }
+
+    .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+        background-color: transparent !important;
+        border: none;
+        outline: 0;
+        height: 1.666666em;
+        margin-bottom: 3px
+    }
+
+    .ui-select-multiple.ui-select-bootstrap .ui-select-match .close {
+        font-size: 1.6em;
+        line-height: .75
+    }
+
+    .ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
+        outline: 0;
+        margin: 0 3px 3px 0
+    }
+
+    .ui-select-multiple .ui-select-match-item {
+        position: relative
+    }
+
+    .ui-select-multiple .ui-select-match-item.dropping .ui-select-match-close {
+        pointer-events: none
+    }
+
+    .ui-select-multiple:hover .ui-select-match-item.dropping-before:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 100%;
+        height: 100%;
+        margin-right: 2px;
+        border-left: 1px solid #428bca
+    }
+
+    .ui-select-multiple:hover .ui-select-match-item.dropping-after:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 100%;
+        height: 100%;
+        margin-left: 2px;
+        border-right: 1px solid #428bca
+    }
+
+    .ui-select-bootstrap .ui-select-choices-row > span {
+        cursor: pointer;
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: 400;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap
+    }
+
+    .ui-select-bootstrap .ui-select-choices-row > span:focus, .ui-select-bootstrap .ui-select-choices-row > span:hover {
+        text-decoration: none;
+        color: #262626;
+        background-color: #f5f5f5
+    }
+
+    .ui-select-bootstrap .ui-select-choices-row.active > span {
+        color: #fff;
+        text-decoration: none;
+        outline: 0;
+        background-color: #428bca
+    }
+
+    .ui-select-bootstrap .ui-select-choices-row.active.disabled > span, .ui-select-bootstrap .ui-select-choices-row.disabled > span {
+        color: #777;
+        cursor: not-allowed;
+        background-color: #fff
+    }
+
+    .ui-select-match.ng-hide-add, .ui-select-search.ng-hide-add {
+        display: none !important
+    }
+
+    .ui-select-bootstrap.ng-dirty.ng-invalid > button.btn.ui-select-match {
+        border-color: #d44950
+    }
+
+    .ui-select-container[theme=bootstrap].direction-up .ui-select-dropdown {
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, .25)
+    }
+
+    .ui-select-bootstrap .ui-select-match-text {
+        width: 100%;
+        padding-right: 1em
+    }
+
+    .ui-select-bootstrap .ui-select-match-text span {
+        display: inline-block;
+        width: 100%;
+        overflow: hidden
+    }
+
+    .ui-select-bootstrap .ui-select-toggle > a.btn {
+        position: absolute;
+        height: 10px;
+        right: 10px;
+        margin-top: -2px
+    }
+
+    .ui-select-refreshing.glyphicon {
+        position: absolute;
+        right: 0;
+        padding: 8px 27px
+    }
+
+    @keyframes ui-select-spin {
+        0% {
+            transform: rotate(0)
+        }
+        to {
+            transform: rotate(359deg)
+        }
+    }
+
+    .ui-select-spin {
+        animation: ui-select-spin 2s infinite linear
+    }
+
+    .ui-select-refreshing.ng-animate {
+        -webkit-animation: none 0s
+    }</style>
+    <script type="text/javascript" src="https://hm.baidu.com/hm.js?aa25ce7cfdf5bc31d2ba8cdc750af2fd"></script>
+    <style type="text/css">.app-header .navbar-brand > span {
+        color: #27c24c !important
+    }</style>
+</head>
+<body>
+
+<!-- uiView: -->
+<div class="app app-header-fixed app-aside-fixed ng-scope app-aside-folded"
+     ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}"
+     id="app" ui-view=""> <!-- uiView: nav@entry -->
+    <div class="app-header navbar ng-scope" style="z-index:3" ui-view="nav@entry">
+        <div class="navbar-header app-aside-folded bg-white" ng-init="app.settings.asideFolded = true">
+            <!-- ngIf: servicerModules.nav.enable && servicerSetting.info.menu_decode.length -->
+            <button class="pull-right visible-xs dk ng-scope" ui-toggle-class="show" data-target=".navbar-collapse"
+                    ng-if="servicerModules.nav.enable &amp;&amp; servicerSetting.info.menu_decode.length"><i
+                    class="glyphicon glyphicon-cog"></i></button>
+            <!-- end ngIf: servicerModules.nav.enable && servicerSetting.info.menu_decode.length -->
+            <button class="pull-right visible-xs hidden-xs" ui-toggle-class="off-screen" data-target=".app-aside"
+                    ui-scroll="app"><i class="glyphicon glyphicon-align-justify"></i></button>
+            <a href="#/" class="navbar-brand text-lt block pull-left" style="display:block;padding:0 20px">
+                <!-- ngIf: app.settings.asideFolded --><span ng-if="app.settings.asideFolded"
+                                                             class="hidden-xs ng-binding ng-scope"
+                                                             ng-bind="getFirstText(servicerDetail.logo_text,1)">家</span>
+                <!-- end ngIf: app.settings.asideFolded --> <span class="hidden-folded m-l-xs ng-binding"
+                                                                  ng-bind="getFirstText(servicerDetail.logo_text,7)">家政保洁</span>
+            </a></div> <!-- ngIf: servicerModules.nav.enable && servicerSetting.info.menu_decode.length -->
+        <div class="collapse pos-rlt navbar-collapse box-shadow bg-green"
+             ng-if="servicerModules.nav.enable &amp;&amp; servicerSetting.info.menu_decode.length">
+            <ul class="nav navbar-nav"> <!-- ngRepeat: menuItem in servicerSetting.info.menu_decode track by $index -->
+                <li ng-repeat="menuItem in servicerSetting.info.menu_decode track by $index" class="ng-scope">
+                    <!-- ngIf: menuItem.name!='模板' && !menuItem.disable --><a
+                        ng-if="menuItem.name!='模板' &amp;&amp; !menuItem.disable" ng-href="http://www.zhuzi.me"
+                        target="_self" class="ng-binding ng-scope" href="http://www.zhuzi.me">首页</a>
+                    <!-- end ngIf: menuItem.name!='模板' && !menuItem.disable -->
+                    <!-- ngIf: menuItem.name=='模板' && !menuItem.disable && servicerModules.site_create.enable && servicerModules.site_create.value>0 -->
+                </li><!-- end ngRepeat: menuItem in servicerSetting.info.menu_decode track by $index -->
+                <li ng-repeat="menuItem in servicerSetting.info.menu_decode track by $index" class="ng-scope">
+                    <!-- ngIf: menuItem.name!='模板' && !menuItem.disable -->
+                    <!-- ngIf: menuItem.name=='模板' && !menuItem.disable && servicerModules.site_create.enable && servicerModules.site_create.value>0 --><a
+                        ng-if="menuItem.name=='模板' &amp;&amp; !menuItem.disable &amp;&amp; servicerModules.site_create.enable &amp;&amp; servicerModules.site_create.value>0"
+                        ng-href="/template" target="_self" class="ng-binding ng-scope" href="/template">模板</a>
+                    <!-- end ngIf: menuItem.name=='模板' && !menuItem.disable && servicerModules.site_create.enable && servicerModules.site_create.value>0 -->
+                </li><!-- end ngRepeat: menuItem in servicerSetting.info.menu_decode track by $index -->
+                <li ng-repeat="menuItem in servicerSetting.info.menu_decode track by $index" class="ng-scope">
+                    <!-- ngIf: menuItem.name!='模板' && !menuItem.disable --><a
+                        ng-if="menuItem.name!='模板' &amp;&amp; !menuItem.disable" ng-href="http://www.zhuzi.me/7557.html"
+                        target="_self" class="ng-binding ng-scope" href="http://www.zhuzi.me/7557.html">案例</a>
+                    <!-- end ngIf: menuItem.name!='模板' && !menuItem.disable -->
+                    <!-- ngIf: menuItem.name=='模板' && !menuItem.disable && servicerModules.site_create.enable && servicerModules.site_create.value>0 -->
+                </li><!-- end ngRepeat: menuItem in servicerSetting.info.menu_decode track by $index -->
+                <li ng-repeat="menuItem in servicerSetting.info.menu_decode track by $index" class="ng-scope">
+                    <!-- ngIf: menuItem.name!='模板' && !menuItem.disable --><a
+                        ng-if="menuItem.name!='模板' &amp;&amp; !menuItem.disable" ng-href="http://www.zhuzi.me/about"
+                        target="_self" class="ng-binding ng-scope" href="http://www.zhuzi.me/about">关于</a>
+                    <!-- end ngIf: menuItem.name!='模板' && !menuItem.disable -->
+                    <!-- ngIf: menuItem.name=='模板' && !menuItem.disable && servicerModules.site_create.enable && servicerModules.site_create.value>0 -->
+                </li><!-- end ngRepeat: menuItem in servicerSetting.info.menu_decode track by $index -->
+                <li ng-repeat="menuItem in servicerSetting.info.menu_decode track by $index" class="ng-scope">
+                    <!-- ngIf: menuItem.name!='模板' && !menuItem.disable --><a
+                        ng-if="menuItem.name!='模板' &amp;&amp; !menuItem.disable" ng-href="http://zhuzi.kf5.com"
+                        target="__blank" class="ng-binding ng-scope" href="http://zhuzi.kf5.com">帮助</a>
+                    <!-- end ngIf: menuItem.name!='模板' && !menuItem.disable -->
+                    <!-- ngIf: menuItem.name=='模板' && !menuItem.disable && servicerModules.site_create.enable && servicerModules.site_create.value>0 -->
+                </li><!-- end ngRepeat: menuItem in servicerSetting.info.menu_decode track by $index -->
+                <li ng-repeat="menuItem in servicerSetting.info.menu_decode track by $index" class="ng-scope">
+                    <!-- ngIf: menuItem.name!='模板' && !menuItem.disable -->
+                    <!-- ngIf: menuItem.name=='模板' && !menuItem.disable && servicerModules.site_create.enable && servicerModules.site_create.value>0 --> </li>
+                <!-- end ngRepeat: menuItem in servicerSetting.info.menu_decode track by $index --> </ul>
+        </div><!-- end ngIf: servicerModules.nav.enable && servicerSetting.info.menu_decode.length --> </div>
+    <!-- uiView: content@entry -->
+    <div class="fade-in-right-big smooth ng-scope" ui-view="content@entry">
+        <div class="login container w-xxl w-auto-xs m-t-xxl ng-scope" ng-init="init();">
+            <div class="m-b-lg m-t-lg">
+                <blockquote ng-show="error" class="" style=""><p class="text-danger ng-binding">用户不存在。
+                    <!-- ngIf: loginFailedNum>=3 && servicerDetail.servicerid != 127 --> </p></blockquote>
+                <div class="panel panel-default m-b-xxl">
+                    <div class="panel-heading font-bold m-b-xs">登录</div>
+                    <div class="panel-body">
+                        <form name="loginForm"
+                              class="form-validation ng-valid-maxlength ng-dirty ng-valid-parse ng-valid-valid ng-valid-required ng-valid ng-valid-minlength ng-submitted"
+                              novalidate="" ng-submit="loginAction(loginData)" style="">
+                            <div class="form-group"><label>手机号/邮箱</label> <input type="text" placeholder="请输入手机号/邮箱"
+                                                                                 class="form-control ng-not-empty ng-dirty ng-valid-parse ng-valid-valid ng-valid ng-valid-required ng-touched"
+                                                                                 name="username"
+                                                                                 ng-model="loginData.username"
+                                                                                 ui-validate="{valid:'isValidUsername($value)'}"
+                                                                                 required="" style=""> <span
+                                    class="help-block m-b-none text-danger ng-hide"
+                                    ng-show="loginForm.username.$touched &amp;&amp; loginForm.username.$error.valid"> <i
+                                    class="fa fa-exclamation-circle fa-fw"></i>请输入正确的手机号/邮箱</span></div>
+                            <div class="form-group m-b-md"><label>输入密码</label> <input
+                                    class="form-control ng-valid-maxlength ng-not-empty ng-dirty ng-valid-parse ng-valid-required ng-valid ng-valid-minlength ng-touched"
+                                    type="password" autocomplete="off" name="password" value=""
+                                    ng-model="loginData.password" ng-minlength="6" ng-maxlength="16" placeholder="输入密码"
+                                    required="" style=""> <span class="help-block m-b-none text-danger ng-hide"
+                                                                ng-show="loginForm.password.$touched &amp;&amp; loginForm.password.$invalid"> <i
+                                    class="fa fa-exclamation-circle fa-fw"></i> 请输入正确的密码</span></div>
+                            <!-- ngIf: bindInfo.choice !='login' -->
+                            <button ng-if="bindInfo.choice !='login'" type="submit"
+                                    class="btn btn-primary btn-group-justified m-b ng-binding ng-scope"
+                                    ng-disabled="loginForm.$invalid">安全登录
+                            </button><!-- end ngIf: bindInfo.choice !='login' -->
+                            <!-- ngIf: bindInfo.choice =='login' --> </form>
+                    </div> <!-- ngIf: !isFromBind && servicerDetail.servicerid == 1 && servicerModules.thirdLogin -->
+                </div>
+                <div> <!-- ngIf: servicerModules.register.enable -->
+                    <button class="btn btn-primary btn-block m-b-sm ng-scope" ng-if="servicerModules.register.enable"
+                            ui-sref="account.register" href="#/account/register">免费注册
+                    </button><!-- end ngIf: servicerModules.register.enable -->
+                    <!-- ngIf: servicerDetail.servicerid != 127 -->
+                    <button ng-if="servicerDetail.servicerid != 127" class="btn btn-default btn-block m-b ng-scope"
+                            ui-sref="account.reset" href="#/account/reset">忘记密码？重置
+                    </button><!-- end ngIf: servicerDetail.servicerid != 127 -->
+                    <!-- ngIf: servicerSetting.info.website_domain --><a ng-if="servicerSetting.info.website_domain"
+                                                                         ng-href="//www.zhuzi.me" class="ng-scope"
+                                                                         href="//www.zhuzi.me"> <i
+                            class="fa fa-long-arrow-left fa-fw m-r-xs"></i> 返回到主站 </a>
+                    <!-- end ngIf: servicerSetting.info.website_domain --> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.SERVICER_SETTING = {
+        "servicerid": 1,
+        "show_logo_method": 3,
+        "show_footer_method": 2,
+        "discount": 2000,
+        "is_avalible": true,
+        "info": {
+            "servicerid": 1,
+            "uc_domain": "uc.zhuzi.me",
+            "website_domain": "www.zhuzi.me",
+            "logo": "http://bk.image.styleweb.com.cn/sp/1488957354891",
+            "logo_text": "家政保洁",
+            "menu": "[{\"name\":\"首页\",\"url\":\"http://www.zhuzi.me\",\"new_window\":false,\"disable\":false},{\"name\":\"模板\",\"url\":\"/template\",\"new_window\":false,\"disable\":false},{\"name\":\"案例\",\"url\":\"http://www.zhuzi.me/7557.html\",\"new_window\":false,\"disable\":false},{\"name\":\"关于\",\"url\":\"http://www.zhuzi.me/about\",\"new_window\":false,\"disable\":false},{\"name\":\"帮助\",\"url\":\"http://zhuzi.kf5.com\",\"new_window\":true,\"disable\":false},{\"name\":\"论坛\",\"url\":\"http://bbs.zhuzi.me/\",\"new_window\":false,\"disable\":true}]",
+            "menu_decode": [{
+                "name": "首页",
+                "url": "http://www.zhuzi.me",
+                "new_window": false,
+                "disable": false
+            }, {"name": "模板", "url": "/template", "new_window": false, "disable": false}, {
+                "name": "案例",
+                "url": "http://www.zhuzi.me/7557.html",
+                "new_window": false,
+                "disable": false
+            }, {"name": "关于", "url": "http://www.zhuzi.me/about", "new_window": false, "disable": false}, {
+                "name": "帮助",
+                "url": "http://zhuzi.kf5.com",
+                "new_window": true,
+                "disable": false
+            }, {"name": "论坛", "url": "http://bbs.zhuzi.me/", "new_window": false, "disable": true}]
+        },
+        "uc_theme": {
+            "header": {
+                "brand": "bg-white",
+                "brand_text_color": "#27c24c",
+                "nav": "bg-green",
+                "nav_text_color": ""
+            }, "sidebar": "bg-dark", "sidebar_text_color": "", "color": "green"
+        },
+        "partner_logo": "",
+        "modules": {
+            "domain": {"enable": true, "value": ""},
+            "integral": {"enable": false, "value": ""},
+            "nav": {"enable": true, "value": ""},
+            "notification": {"enable": true, "value": ""},
+            "order": {"enable": true, "value": ""},
+            "promote": {"enable": false, "value": ""},
+            "purchase": {"enable": true, "value": ""},
+            "register": {"enable": true, "value": ""},
+            "site_bind_domain": {"enable": true, "value": ""},
+            "site_copy": {"enable": true, "value": ""},
+            "site_create": {"enable": true, "value": 100},
+            "site_delete": {"enable": true, "value": ""},
+            "site_edit": {"enable": true, "value": ""},
+            "site_switch_node": {"enable": true, "value": ""},
+            "site_transfer": {"enable": true, "value": ""}
+        },
+        "member_domain_suffix": "s.cn.vc"
+    };
+    window.SERVICER_DETAIL = {
+        "mobile": "15710098442",
+        "company_name": "北京52保洁科技有限公司",
+        "is_available": 1,
+        "uc_domain": "http://www.52baojie.com",
+        "website_domain": "http://www.52baojie.com",
+        "logo": "http://bk.image.styleweb.com.cn/sp/1488957354891",
+        "logo_text": "家政保洁",
+        "menu": "[{\"name\":\"首页\",\"url\":\"http://www.zhuzi.me\",\"new_window\":false,\"disable\":false},{\"name\":\"模板\",\"url\":\"/template\",\"new_window\":false,\"disable\":false},{\"name\":\"案例\",\"url\":\"http://www.zhuzi.me/7557.html\",\"new_window\":false,\"disable\":false},{\"name\":\"关于\",\"url\":\"http://www.zhuzi.me/about\",\"new_window\":false,\"disable\":false},{\"name\":\"帮助\",\"url\":\"http://zhuzi.kf5.com\",\"new_window\":true,\"disable\":false},{\"name\":\"论坛\",\"url\":\"http://bbs.zhuzi.me/\",\"new_window\":false,\"disable\":true}]",
+        "menu_decode": null,
+        "servicerid": 1,
+        "partner_logo": ""
+    };
+    window.SERVICER_MODULES = window.SERVICER_SETTING.modules;
+    window.STATICURL = "//bk.st.styleweb.com.cn/ucenter/";
+    window.STATICURL = window.STATICURL + "v2/";
+
+    window.COOKIE_DOMAIN = "zhuzi.me";
+    // 正式环境切换到 v2版本
+    window.DEBUG = false;
+
+    window.VERSION = {
+        css: "2018123164344",
+        js: "201812316577"
+    };
+    window.FEATURES = {
+        siteid: 923,
+        pageid: 37045
+    };
+    window.UploadServer = location.host == 'uc.zhuzi.me' ? "http://upload.api.zhuzi.me" : location.protocol + "//" + location.host;
+
+</script>
+<script type="text/javascript">
+    var obj = (document.getElementsByTagName('head')[0] || body),
+        jsList = [
+            "//static.geetest.com/static/tools/gt.js",
+            window.STATICURL + 'js/bundle.js?' + window.VERSION.js,
+            window.STATICURL + 'js/jquery-3.1.0.min.js?' + window.VERSION.js,
+            window.STATICURL + 'js/app.js?' + window.VERSION.js,
+            "https://hm.baidu.com/hm.js?aa25ce7cfdf5bc31d2ba8cdc750af2fd"
+        ],
+        cssList = [
+            window.STATICURL + '??css/bootstrap.css,css/animate.css,css/font-awesome.min.css,css/simple-line-icons.css,css/font.css?' + window.VERSION.css,
+            window.STATICURL + '??css/loading-bar.min.css,css/sweetalert.css,font/style.css,css/style.css,css/uc_theme/bgColor.css?' + window.VERSION.css
+        ],
+        resourceNum = jsList.length + cssList.length,
+        resNum = [],
+        ucTheme = window.SERVICER_SETTING.uc_theme;
+
+
+    // 动态加载站点主色系css
+    var fileName = '';
+    switch (ucTheme.color) {
+        case 'blue':
+            fileName = 'appBlue';
+            break;
+        case 'dark':
+            fileName = 'appDark';
+            break;
+        case 'green':
+            fileName = 'appGreen';
+            break;
+        case 'purple':
+            fileName = 'appPurple';
+            break;
+        case 'red':
+            fileName = 'appRed';
+            break;
+        case 'yellow':
+            fileName = 'appYellow';
+            break;
+        default:
+            fileName = 'appGreen';
+    }
+    switch (window.SERVICER_SETTING.partner_logo) {
+        case 'zbj':
+            fileName = 'zbj';
+            break;
+    }
+    cssList.push(window.STATICURL + 'css/uc_theme/' + fileName + '.css?' + window.VERSION.css);
+
+    function removeLoading() {
+        if (resNum.length == resourceNum) {
+            document.body.removeChild(document.getElementById("app-loading-bar"));
+        }
+    }
+
+    if (cssList.length) {
+        for (var i in cssList) {
+            css = document.createElement('link');
+            css.onload = function () {
+                resNum.push(1);
+                removeLoading();
+            };
+            css.rel = 'stylesheet';
+            css.href = cssList[i];
+            obj.appendChild(css);
+        }
+    }
+
+    function loadJS(num) {
+        if (num >= jsList.length) {
+            return
+        }
+        var js = document.createElement('script');
+        js.type = 'text/javascript';
+        js.onload = function () {
+            resNum.push(1);
+            removeLoading();
+            loadJS(num + 1);
+        };
+        js.onerror = function () {
+            resNum.push(1);
+            removeLoading();
+            loadJS(num + 1);
+        };
+        js.src = jsList[num];
+        obj.appendChild(js);
+    }
+
+    loadJS(0);
+</script>
+
+
+</body>
+</html>
