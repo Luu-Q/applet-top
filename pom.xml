@@ -208,7 +208,7 @@
     </dependencyManagement>
 
 
-    <build>
+    <!--<build>
         <finalName>applet-top</finalName>
         <plugins>
             <plugin>
@@ -216,7 +216,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 
 </project>
