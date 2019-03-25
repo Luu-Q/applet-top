@@ -10,6 +10,17 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <modules>
+        <module>eureka-server</module>
+        <module>zuul-server</module>
+        <module>common</module>
+        <module>zipkin</module>
+        <module>sms-api</module>
+        <module>sms-web</module>
+        <module>applet-api</module>
+        <module>applet-web</module>
+    </modules>
+
     <groupId>com.applet</groupId>
     <artifactId>applet-top</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -26,13 +37,6 @@
         <druid.version>1.1.10</druid.version>
         <swagger2.version>2.6.1</swagger2.version>
     </properties>
-
-    <modules>
-        <module>eureka-server</module>
-        <module>sms</module>
-        <module>applet</module>
-        <module>zuul-server</module>
-    </modules>
 
     <dependencyManagement>
         <dependencies>
@@ -152,6 +156,54 @@
                 <artifactId>httpclient</artifactId>
                 <version>4.5.6</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.8.4</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.8.4</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.8.4</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>23.0</version>
+            </dependency>
+
+            <!--业务包start-->
+            <dependency>
+                <groupId>com.applet.common</groupId>
+                <artifactId>common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.applet</groupId>
+                <artifactId>applet-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.applet.sms</groupId>
+                <artifactId>sms-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!--业务包end-->
         </dependencies>
     </dependencyManagement>
 
@@ -159,8 +211,16 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
