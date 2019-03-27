@@ -187,7 +187,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- hibernate logger -->
     <logger name="com.clean.applet" level="debug" />
     <!-- Spring framework logger -->
-    <logger name="org.springframework" level="debug" additivity="true"></logger>
+    <logger name="org.springframework" level="debug" additivity="false"></logger>
     <!--关闭特定包下的日志-->
     <logger name="com.netflix" level="OFF"/>
     <logger name="org.apache.http" level="OFF"/>

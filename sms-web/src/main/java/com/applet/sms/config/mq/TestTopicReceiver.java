@@ -2,6 +2,7 @@ package com.applet.sms.config.mq;// package com.jiuyi.credit.cash.mq;
 
 import com.alibaba.fastjson.JSONObject;
 import com.applet.common.rabbitmq.RabbitConfig;
+import com.applet.common.rabbitmq.RabbitMQConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class TestTopicReceiver {
 
 
-    @RabbitListener(queues = RabbitConfig.REGISTER_QUEUE_NAME, containerFactory = "rabbitListenerContainerFactory")
+    @RabbitListener(queues = RabbitMQConstant.REGISTER_QUEUE_NAME, containerFactory = "rabbitListenerContainerFactory")
     @RabbitHandler
     public void receiveRepayQueue(Message message) {
         try {

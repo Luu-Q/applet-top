@@ -19,6 +19,7 @@
         <module>sms-web</module>
         <module>applet-api</module>
         <module>applet-web</module>
+        <module>chat-web</module>
     </modules>
 
     <groupId>com.applet</groupId>
@@ -70,6 +71,11 @@
                 <scope>provided</scope>
             </dependency>
 
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.1.28.Final</version>
+            </dependency>
 
             <!-- cloud架构包 end -->
 
