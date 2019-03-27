@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @Api(value = "rabbitmq", description = "rabbitmq测试接口")
 @RestController
@@ -66,10 +68,11 @@ public class MqController {
     @GetMapping("/topicExchange")
     public ResultModel<?> topicExchange() {
 
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
 
         String currentDateTime = DateUtil.getCurrentDateTime();
         //路由
-        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A,currentDateTime);
+        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A,currentDateTime,correlationData);
         //主题
         rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY,currentDateTime);
         //随便定义的前缀的key

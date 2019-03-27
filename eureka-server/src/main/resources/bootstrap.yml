@@ -23,3 +23,5 @@ eureka:
 #  level:
 #    com.netflix.eureka: 'off'
 #    com.netflix.discovery: 'off'
+
+#test
