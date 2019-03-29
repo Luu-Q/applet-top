@@ -54,10 +54,18 @@ spring:
     username: admin
     password: admin
     virtual-host: /
+    publisher-confirms: true #支持发布确认
+    publisher-returns: true  #支持发布返回
     listener:
       simple:
-        #采用手动应答
-        acknowledge-mode: manual
+        acknowledge-mode: manual #开启重试
+        retry:
+          max-attempts: 3 #开启重试
+          enabled: true #开启重试
+          initial-interval: 5000ms
+          max-interval: 1200000 #重试最大时间间隔（单位毫秒）
+          multiplier: 5 #应用于前一重试间隔的乘法器。
+        default-requeue-rejected: false #重试次数超过上面的设置之后是否丢弃（false不丢弃时需要写相应代码将该消息加入死信队列）
       direct:
         acknowledge-mode: manual
 

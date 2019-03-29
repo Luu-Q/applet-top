@@ -1,9 +1,10 @@
 package com.applet.controller.mq;
 
 import com.applet.common.rabbitmq.RabbitMQConstant;
+import com.applet.common.rabbitmq.RabbitTemplateUtils;
 import com.applet.common.result.ResultModel;
 import com.applet.common.utils.date.DateUtil;
-import com.applet.entity.request.member.CrearteTokenReq;
+import com.applet.entity.wx.Jscode2Session;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -17,8 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Api(value = "rabbitmq", description = "rabbitmq测试接口")
@@ -29,6 +28,8 @@ public class MqController {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
+    @Autowired
+    RabbitTemplateUtils rabbitTemplateUtils;
 
     @ApiOperation(value = "简单模式", notes = "简单模式", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "成功时,data示例", response = ResultModel.class)})
@@ -66,17 +67,44 @@ public class MqController {
     @ApiOperation(value = "topic路由模式/通配符（主题）", notes = "topic路由模式/通配符（主题）", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "成功时,data示例", response = ResultModel.class)})
     @GetMapping("/topicExchange")
-    public ResultModel<?> topicExchange() {
+    public ResultModel<?> topicExchange() throws InterruptedException {
+
+        Jscode2Session jscode2Session = new Jscode2Session();
+        jscode2Session.setErrcode("111");
+        jscode2Session.setErrmsg("消息");
+        jscode2Session.setExpiresIn(11);
+        jscode2Session.setSessionKey("key");
+        jscode2Session.setUnionid(UUID.randomUUID().toString());
 
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
 
         String currentDateTime = DateUtil.getCurrentDateTime();
+
         //路由
-        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A,currentDateTime,correlationData);
-        //主题
-        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY,currentDateTime);
-        //随便定义的前缀的key
-        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY+"me",currentDateTime);
+        rabbitTemplateUtils.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A,jscode2Session);
+//        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A,jscode2Session,correlationData);
+        Thread.sleep(20);
+//        //主题
+//        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY,currentDateTime,correlationData);
+//        //随便定义的前缀的key
+//        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY+"me",currentDateTime,correlationData);
+
+        return ResultModel.succWithData("success");
+    }
+
+    @ApiOperation(value = "死信队列", notes = "死信队列", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "成功时,data示例", response = ResultModel.class)})
+    @GetMapping("/deadLetterQueue")
+    public ResultModel<?> deadLetterQueue() {
+
+        Jscode2Session jscode2Session = new Jscode2Session();
+        jscode2Session.setErrcode("111");
+        jscode2Session.setErrmsg("消息");
+        jscode2Session.setExpiresIn(11);
+        jscode2Session.setSessionKey("key");
+        jscode2Session.setUnionid(UUID.randomUUID().toString());
+
+        rabbitTemplateUtils.convertAndSend(RabbitMQConstant.TEST_DEAD_LETTER_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_DL_KEY,jscode2Session);
 
         return ResultModel.succWithData("success");
     }

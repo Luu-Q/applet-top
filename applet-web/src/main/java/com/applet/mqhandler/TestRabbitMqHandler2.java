@@ -2,20 +2,14 @@ package com.applet.mqhandler;
 
 import com.applet.common.rabbitmq.RabbitMQConstant;
 import com.rabbitmq.client.Channel;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Map;
 
 @Component
 @Slf4j
@@ -145,19 +139,116 @@ public class TestRabbitMqHandler2 {
             }
         }
     }
+
+
     @RabbitListener(queues = {RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B})
-    public void topicQueueB(Integer collectionId, Message message, Channel channel) {
-        final long deliveryTag = message.getMessageProperties().getDeliveryTag();
+    public void process(Message message, Channel channel) throws IOException {
+
+        MessageProperties messageProperties = message.getMessageProperties();
+
+        log.info("[{}]消息队列接收数据，消息：{}", RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B,message);
+
         try {
-            log.info("[topicQueueB 监听的消息] - [collectionId={}]", collectionId);
-            channel.basicAck(deliveryTag, false);
-        } catch (IOException e) {
+            // TODO 处理消息
+            int i = 1 / 0;
+            // 确认消息已经消费成功
+            channel.basicAck(messageProperties.getDeliveryTag(), false);
+        } catch (Exception e) {
+            log.error("[{}]MQ消息处理异常，消息:{}", RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B,message, e);
             try {
-                channel.basicRecover();
-            } catch (IOException e1) {
-                e1.printStackTrace();
+                // TODO 保存消息到数据库
+                int i = 1 / 0;
+                // 确认消息已经消费成功
+                channel.basicAck(messageProperties.getDeliveryTag(), false);
+            } catch (Exception e1) {
+                log.error("[{}]保存异常MQ消息到数据库异常，放到死信队列，消息：{}",RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B, message);
+                // 确认消息将消息放到死信队列
+                channel.basicNack(messageProperties.getDeliveryTag(), false, false);
             }
         }
     }
+
+    @RabbitListener(queues = {RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B})
+    public void processB(Message message, Channel channel) throws IOException {
+
+        MessageProperties messageProperties = message.getMessageProperties();
+
+        log.info("[{}]消息队列接收数据，消息：{}", RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B,message);
+
+        try {
+            // TODO 处理消息
+            int i = 1 / 0;
+            // 确认消息已经消费成功
+            channel.basicAck(messageProperties.getDeliveryTag(), false);
+        } catch (Exception e) {
+            log.error("[{}]MQ消息处理异常，消息:{}", RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B,message, e);
+            try {
+                // TODO 保存消息到数据库
+                int i = 1 / 0;
+                // 确认消息已经消费成功
+                channel.basicAck(messageProperties.getDeliveryTag(), false);
+            } catch (Exception e1) {
+                log.error("[{}]保存异常MQ消息到数据库异常，放到死信队列，消息：{}",RabbitMQConstant.TEST_TOPIC_QUEUE_NAME_B, message);
+                // 确认消息将消息放到死信队列
+                channel.basicNack(messageProperties.getDeliveryTag(), false, false);
+            }
+        }
+    }
+
+    /* ======================  死信队列 start =========================== */
+
+    @RabbitListener(queues = {RabbitMQConstant.TEST_DEAD_LETTER_QUEUE})
+    public void deadLetterQueue(Message message, Channel channel) throws IOException {
+
+        MessageProperties messageProperties = message.getMessageProperties();
+
+        log.info("[{}]消息队列接收数据，消息：{}", RabbitMQConstant.TEST_DEAD_LETTER_QUEUE,message);
+
+        try {
+            // TODO 处理消息
+            int i = 1 / 0;
+            // 确认消息已经消费成功
+            channel.basicAck(messageProperties.getDeliveryTag(), false);
+        } catch (Exception e) {
+            log.error("[{}]MQ消息处理异常，消息:{}", RabbitMQConstant.TEST_DEAD_LETTER_QUEUE,message, e);
+            try {
+                // TODO 保存消息到数据库
+                int i = 1 / 0;
+                // 确认消息已经消费成功
+                channel.basicAck(messageProperties.getDeliveryTag(), false);
+            } catch (Exception e1) {
+                log.error("[{}]保存异常MQ消息到数据库异常，放到死信队列，消息：{}",RabbitMQConstant.TEST_DEAD_LETTER_QUEUE, message);
+                // 确认消息将消息放到死信队列
+                channel.basicNack(messageProperties.getDeliveryTag(), false, false);
+            }
+        }
+    }
+
+    @RabbitListener(queues = {RabbitMQConstant.TEST_DEAD_LETTER_REDIRECT_QUEUE})
+    public void deadLetterQueueRedirect(Message message, Channel channel) throws IOException {
+
+        MessageProperties messageProperties = message.getMessageProperties();
+
+        log.info("[{}]消息队列接收数据，消息：{}", RabbitMQConstant.TEST_DEAD_LETTER_REDIRECT_QUEUE,message);
+
+        try {
+            // TODO 处理消息
+            // 确认消息已经消费成功
+            channel.basicAck(messageProperties.getDeliveryTag(), false);
+        } catch (Exception e) {
+            log.error("[{}]MQ消息处理异常，消息:{}", RabbitMQConstant.TEST_DEAD_LETTER_REDIRECT_QUEUE,message, e);
+            try {
+                // TODO 保存消息到数据库
+                // 确认消息已经消费成功
+                channel.basicAck(messageProperties.getDeliveryTag(), false);
+            } catch (Exception e1) {
+                log.error("[{}]保存异常MQ消息到数据库异常，放到死信队列，消息：{}",RabbitMQConstant.TEST_DEAD_LETTER_REDIRECT_QUEUE, message);
+                // 确认消息将消息放到死信队列
+                channel.basicNack(messageProperties.getDeliveryTag(), false, false);
+            }
+        }
+    }
+
+    /* ======================  死信队列 end =========================== */
 
 }

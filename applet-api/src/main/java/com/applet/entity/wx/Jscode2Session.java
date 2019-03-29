@@ -3,8 +3,10 @@ package com.applet.entity.wx;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Jscode2Session {
+public class Jscode2Session implements Serializable {
 
     @ApiModelProperty(value = "用户唯一标识")
     private String openid;
