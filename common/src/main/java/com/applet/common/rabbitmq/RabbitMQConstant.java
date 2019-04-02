@@ -13,6 +13,7 @@ public class RabbitMQConstant {
 
     public static final String TEST_TOPIC_QUEUE_NAME_A = "test.topic.queueA";
     public static final String TEST_TOPIC_QUEUE_NAME_B = "test.topic.queueB";
+    public static final String TEST_TOPIC_QUEUE_NAME_C = "test.topic.queueC";
     public static final String TEST_TOPIC_EXCHANGE_NAME = "test.topic.exchange";
     public static final String TEST_TOPIC_ROUTING_KEY_A = "test.topic.keyA";
     public static final String TEST_TOPIC_ROUTING_KEY = "test.topic.#";
@@ -35,6 +36,4 @@ public class RabbitMQConstant {
 
     /* ======================  死信队列 end =========================== */
 
-    public static final String TEST_DIRECT_EXCHANGE_NAME = "test.direct.exchange";
-    public static final String TEST_DIRECT_ROUTING_KEY_A = "test.direct.keyA";
 }

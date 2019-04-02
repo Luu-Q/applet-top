@@ -38,6 +38,7 @@ public class RabbitMQBeans {
         //队列绑定到交换机
         return BindingBuilder.bind(topicQueueB).to(topicExchange).with(RabbitMQConstant.TEST_TOPIC_ROUTING_KEY);
     }
+
     @Bean
     public Queue topicQueueA() {
         /**
@@ -61,42 +62,43 @@ public class RabbitMQBeans {
     }
 
 
-    /* ========================== 发布订阅 Publish/Subscribe ========================== */
+    /* ========================== 发布订阅 Publish/Subscribe，广播模式 ========================== */
     /**
      * fanoutExchange交换机,即使指定了 routingKey 也不起作用
+     * 广播模式 - 扇出
      * 只要绑定到交换机的队列都能消费，一条消息多个消费
      * 工作模式是同一个消息只能有一个消费者
      */
 
-    @Bean
+//    @Bean
     FanoutExchange fanoutExchange() {
         return new FanoutExchange(RabbitMQConstant.TEST_FANOUT_EXCHANGE);
     }
-    @Bean
+//    @Bean
     public Queue AMessage() {
         return new Queue(RabbitMQConstant.TEST_FANOUT_A);
     }
 
-    @Bean
+//    @Bean
     public Queue BMessage() {
         return new Queue(RabbitMQConstant.TEST_FANOUT_B);
     }
 
-    @Bean
+//    @Bean
     public Queue CMessage() {
         return new Queue(RabbitMQConstant.TEST_FANOUT_C);
     }
-    @Bean
+//    @Bean
     Binding bindingExchangeA(Queue AMessage, FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(AMessage).to(fanoutExchange);
     }
 
-    @Bean
+//    @Bean
     Binding bindingExchangeB(Queue BMessage, FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(BMessage).to(fanoutExchange);
     }
 
-    @Bean
+//    @Bean
     Binding bindingExchangeC(Queue CMessage, FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(CMessage).to(fanoutExchange);
     }
@@ -106,14 +108,14 @@ public class RabbitMQBeans {
      *  简单模式：隐患 消息可能没有被消费者正确处理,已经从队列中消失了,造成消息的丢失
      *  工作模式：隐患,高并发情况下,默认会产生某一个消息被多个消费者共同使用
      */
-    @Bean
+//    @Bean
     public Queue workQueue() {
         return new Queue(RabbitMQConstant.TEST_WORK);
     }
 
 
     /* ========================== 简单队列 hello world ========================== */
-    @Bean
+//    @Bean
     public Queue helloWorldQueue() {
         return new Queue(RabbitMQConstant.TEST_HELLOWORLD);
     }

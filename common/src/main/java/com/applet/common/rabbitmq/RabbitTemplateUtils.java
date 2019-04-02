@@ -1,5 +1,6 @@
 package com.applet.common.rabbitmq;
 
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -15,7 +16,7 @@ public class RabbitTemplateUtils {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    public boolean convertAndSend(String exchange,String routingKey,Object object){
+    public boolean convertAndSend(String exchange,String routingKey,Object object) throws Exception{
         MessagePostProcessor messagePostProcessor = message -> {
             MessageProperties messageProperties = message.getMessageProperties();
             //设置编码
@@ -27,8 +28,10 @@ public class RabbitTemplateUtils {
             return message;
         };
 
+        Message message = null;
+
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertAndSend(exchange,routingKey,object,messagePostProcessor,correlationData);
+        rabbitTemplate.convertAndSend(exchange,routingKey,message,messagePostProcessor,correlationData);
         return true;
     }
 

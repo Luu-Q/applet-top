@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
@@ -23,6 +24,7 @@ import java.util.UUID;
 @Api(value = "rabbitmq", description = "rabbitmq测试接口")
 @RestController
 @RequestMapping("/rabbitmq")
+@Slf4j
 public class MqController {
 
 
@@ -67,7 +69,7 @@ public class MqController {
     @ApiOperation(value = "topic路由模式/通配符（主题）", notes = "topic路由模式/通配符（主题）", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "成功时,data示例", response = ResultModel.class)})
     @GetMapping("/topicExchange")
-    public ResultModel<?> topicExchange() throws InterruptedException {
+    public ResultModel<?> topicExchange() throws Exception {
 
         Jscode2Session jscode2Session = new Jscode2Session();
         jscode2Session.setErrcode("111");
@@ -95,7 +97,7 @@ public class MqController {
     @ApiOperation(value = "死信队列", notes = "死信队列", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "成功时,data示例", response = ResultModel.class)})
     @GetMapping("/deadLetterQueue")
-    public ResultModel<?> deadLetterQueue() {
+    public ResultModel<?> deadLetterQueue()  {
 
         Jscode2Session jscode2Session = new Jscode2Session();
         jscode2Session.setErrcode("111");
@@ -104,7 +106,11 @@ public class MqController {
         jscode2Session.setSessionKey("key");
         jscode2Session.setUnionid(UUID.randomUUID().toString());
 
-        rabbitTemplateUtils.convertAndSend(RabbitMQConstant.TEST_DEAD_LETTER_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_DL_KEY,jscode2Session);
+        try {
+            rabbitTemplateUtils.convertAndSend(RabbitMQConstant.TEST_DEAD_LETTER_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_DL_KEY_R,jscode2Session);
+        } catch (Exception e) {
+
+        }
 
         return ResultModel.succWithData("success");
     }

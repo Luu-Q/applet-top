@@ -44,7 +44,7 @@ public class DeadLetterQueues {
     }
 
     /**
-     * 定义死信队列转发队列.
+     * 定义死信队列转发队列.普通队列
      *
      * @return the queue
      */
@@ -61,11 +61,10 @@ public class DeadLetterQueues {
     @Bean
     public Binding deadLetterBinding() {
         return new Binding(RabbitMQConstant.TEST_DEAD_LETTER_QUEUE, Binding.DestinationType.QUEUE, RabbitMQConstant.TEST_DEAD_LETTER_EXCHANGE_NAME, RabbitMQConstant.TEST_TOPIC_ROUTING_DL_KEY, null);
-
     }
 
     /**
-     * 死信路由通过 KEY_R 绑定键绑定到死信队列上.
+     * 死信路由通过 KEY_R 绑定键绑定到死信队列上.普通队列绑定到交换机
      *
      * @return the binding
      */
