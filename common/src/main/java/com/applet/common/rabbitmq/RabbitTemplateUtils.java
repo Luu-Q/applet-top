@@ -1,22 +1,39 @@
 package com.applet.common.rabbitmq;
 
-import org.springframework.amqp.core.Message;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
+import java.util.Date;
 
 @Component
 public class RabbitTemplateUtils {
 
+    /**
+     * 描述 : 应用名称
+     */
+    @Value("${spring.application.name}")
+    private String springApplicationName;
+
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    public boolean convertAndSend(String exchange,String routingKey,Object object) throws Exception{
+    public <T> Object convertAndSend(RabbitmqMessage<T> rabbitmqMessage) throws Exception{
+        if(null == rabbitmqMessage){
+            return null;
+        }
+        if(StringUtils.isEmpty(rabbitmqMessage.getExchange())){
+            return null;
+        }
+        if(null == rabbitmqMessage.getBody()){
+            return null;
+        }
+
         MessagePostProcessor messagePostProcessor = message -> {
             MessageProperties messageProperties = message.getMessageProperties();
             //设置编码
@@ -28,10 +45,14 @@ public class RabbitTemplateUtils {
             return message;
         };
 
-        Message message = null;
+        rabbitmqMessage.setSender(springApplicationName);
+        rabbitmqMessage.setSendDate(new Date());
+        rabbitmqMessage.setCreateDate(new Date());
+        rabbitmqMessage.setTimestamp(System.currentTimeMillis());
 
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertAndSend(exchange,routingKey,message,messagePostProcessor,correlationData);
+        CorrelationData correlationData = new CorrelationData(rabbitmqMessage.getId());
+
+        rabbitTemplate.convertAndSend(rabbitmqMessage.getExchange(),rabbitmqMessage.getRoutingKey(),rabbitmqMessage.getBody(),messagePostProcessor,correlationData);
         return true;
     }
 

@@ -2,6 +2,7 @@ package com.applet.controller.mq;
 
 import com.applet.common.rabbitmq.RabbitMQConstant;
 import com.applet.common.rabbitmq.RabbitTemplateUtils;
+import com.applet.common.rabbitmq.RabbitmqMessage;
 import com.applet.common.result.ResultModel;
 import com.applet.common.utils.date.DateUtil;
 import com.applet.entity.wx.Jscode2Session;
@@ -12,7 +13,6 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,12 +78,15 @@ public class MqController {
         jscode2Session.setSessionKey("key");
         jscode2Session.setUnionid(UUID.randomUUID().toString());
 
-        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        RabbitmqMessage message = new RabbitmqMessage();
+        message.setId(UUID.randomUUID().toString());
+        message.setExchange(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME);
+        message.setRoutingKey(RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A);
+        message.setBody(jscode2Session);
 
-        String currentDateTime = DateUtil.getCurrentDateTime();
 
         //路由
-        rabbitTemplateUtils.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A,jscode2Session);
+        rabbitTemplateUtils.convertAndSend(message);
 //        rabbitTemplate.convertAndSend(RabbitMQConstant.TEST_TOPIC_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_KEY_A,jscode2Session,correlationData);
         Thread.sleep(20);
 //        //主题
@@ -106,10 +109,16 @@ public class MqController {
         jscode2Session.setSessionKey("key");
         jscode2Session.setUnionid(UUID.randomUUID().toString());
 
-        try {
-            rabbitTemplateUtils.convertAndSend(RabbitMQConstant.TEST_DEAD_LETTER_EXCHANGE_NAME,RabbitMQConstant.TEST_TOPIC_ROUTING_DL_KEY_R,jscode2Session);
-        } catch (Exception e) {
+        RabbitmqMessage message = new RabbitmqMessage();
+        message.setId(UUID.randomUUID().toString());
+        message.setExchange(RabbitMQConstant.TEST_DEAD_LETTER_EXCHANGE_NAME);
+        message.setRoutingKey(RabbitMQConstant.TEST_TOPIC_ROUTING_DL_KEY_R);
+        message.setBody(jscode2Session);
 
+        try {
+            rabbitTemplateUtils.convertAndSend(message);
+        } catch (Exception e) {
+            log.error("deadLetterQueue",e);
         }
 
         return ResultModel.succWithData("success");
