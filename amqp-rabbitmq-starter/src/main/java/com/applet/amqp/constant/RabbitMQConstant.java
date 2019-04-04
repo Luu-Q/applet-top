@@ -1,4 +1,4 @@
-package com.applet.common.rabbitmq;
+package com.applet.amqp.constant;
 
 public class RabbitMQConstant {
 

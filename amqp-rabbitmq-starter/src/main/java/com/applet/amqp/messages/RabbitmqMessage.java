@@ -1,10 +1,4 @@
-/**
- * Message.java
- * Created at 2016-09-19
- * Created by wangkang
- * Copyright (C) 2016 itkk.org, All rights reserved.
- */
-package com.applet.common.rabbitmq;
+package com.applet.amqp.messages;
 
 import lombok.Data;
 import lombok.ToString;

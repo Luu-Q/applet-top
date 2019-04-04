@@ -1,8 +1,8 @@
 package com.applet.controller.mq;
 
-import com.applet.common.rabbitmq.RabbitMQConstant;
-import com.applet.common.rabbitmq.RabbitTemplateUtils;
-import com.applet.common.rabbitmq.RabbitmqMessage;
+import com.applet.amqp.RabbitTemplateUtils;
+import com.applet.amqp.constant.RabbitMQConstant;
+import com.applet.amqp.messages.RabbitmqMessage;
 import com.applet.common.result.ResultModel;
 import com.applet.common.utils.date.DateUtil;
 import com.applet.entity.wx.Jscode2Session;

@@ -1,6 +1,6 @@
 package com.applet;
 
-import com.applet.common.rabbitmq.RabbitConfig;
+import com.applet.amqp.config.RabbitConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;

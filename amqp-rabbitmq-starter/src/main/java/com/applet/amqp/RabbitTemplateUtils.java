@@ -1,5 +1,6 @@
-package com.applet.common.rabbitmq;
+package com.applet.amqp;
 
+import com.applet.amqp.messages.RabbitmqMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;

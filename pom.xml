@@ -20,6 +20,7 @@
         <module>applet-api</module>
         <module>applet-web</module>
         <module>chat-web</module>
+        <module>amqp-rabbitmq-starter</module>
     </modules>
 
     <groupId>com.applet</groupId>
@@ -207,6 +208,11 @@
             <dependency>
                 <groupId>com.applet.sms</groupId>
                 <artifactId>sms-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.applet.amqp</groupId>
+                <artifactId>amqp-rabbitmq-starter</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <!--业务包end-->
