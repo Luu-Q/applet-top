@@ -1,7 +1,7 @@
 package com.applet.mqhandler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.applet.common.rabbitmq.RabbitMQConstant;
+import com.applet.amqp.constant.RabbitMQConstant;
 import com.applet.entity.wx.Jscode2Session;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;

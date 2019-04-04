@@ -1,6 +1,6 @@
 spring:
   application:
-    name: clean-zuul-server
+    name: applet-zuul-server
 
 
 eureka:

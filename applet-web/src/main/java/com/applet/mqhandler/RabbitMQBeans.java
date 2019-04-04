@@ -1,6 +1,6 @@
 package com.applet.mqhandler;
 
-import com.applet.common.rabbitmq.RabbitMQConstant;
+import com.applet.amqp.constant.RabbitMQConstant;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

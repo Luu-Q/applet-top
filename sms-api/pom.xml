@@ -40,10 +40,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.applet.amqp</groupId>
+            <artifactId>amqp-rabbitmq-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.applet.common</groupId>
             <artifactId>common</artifactId>

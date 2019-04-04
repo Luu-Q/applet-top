@@ -1,6 +1,6 @@
 package com.applet.sms;
 
-import com.applet.common.rabbitmq.RabbitConfig;
+import com.applet.amqp.config.RabbitConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
