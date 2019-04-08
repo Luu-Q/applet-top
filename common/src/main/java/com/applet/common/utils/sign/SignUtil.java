@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  * scm验签工具
- * @author zzh
+ * @author luning
  * @version 2018年6月26日15:43:44
  */
 public class SignUtil {
@@ -52,7 +52,7 @@ public class SignUtil {
 		String params = null;
 		try {
 			// 签名后的url
-			params = getSCMSignature(JSONObject.parseObject(JSONObject.toJSONString(temp)), secretKey);
+			params = getSignatures(JSONObject.parseObject(JSONObject.toJSONString(temp)), secretKey);
 			System.out.println("***********  获取签名成功   ************");
 			System.out.println(params);
 			temp.put("sign", params);
@@ -72,7 +72,7 @@ public class SignUtil {
 	* @return
 	* @throws Exception
 	*/
-	public static String getSCMSignature(JSONObject data, String secretKey) {
+	public static String getSignatures(JSONObject data, String secretKey) {
 		//logger.info("data:" +  data);
 		// 第一步：获取并排序json数据
 		//忽略签名
@@ -214,7 +214,7 @@ public class SignUtil {
 		
 		JSONObject obj1 = JSON.parseObject(jsonstr);
 		try {
-			String md5 = SignUtil.getSCMSignature(obj1, "DuA0=pSd5RXTes!s%=Wv");
+			String md5 = SignUtil.getSignatures(obj1, "DuA0=pSd5RXTes!s%=Wv");
 			
 //			String parms = paramsJson(jsonstr,"train_test","DuA0=pSd5RXTes!s%=Wv");
 			System.out.println(md5);
