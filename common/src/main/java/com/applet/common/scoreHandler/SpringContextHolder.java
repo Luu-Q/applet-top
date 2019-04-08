@@ -63,11 +63,12 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 			return proxy;// 不是代理对象
 		}
 		// 根据jdk进行反射操作
-		if (AopUtils.isJdkDynamicProxy(proxy)) {
-			return getContent.getJdkDynamicProxyTargetObject(proxy);
-		} else { // 根据cglib进行反射操作
-			return getContent.getCglibProxyTargetObject(proxy);
-		}
+//		if (AopUtils.isJdkDynamicProxy(proxy)) {
+//			return getContent.getJdkDynamicProxyTargetObject(proxy);
+//		} else { // 根据cglib进行反射操作
+//			return getContent.getCglibProxyTargetObject(proxy);
+//		}
+		return null;
 	}
 
 	// 根据传入的自定义注解的类,从Application获取有此注解的所有类
