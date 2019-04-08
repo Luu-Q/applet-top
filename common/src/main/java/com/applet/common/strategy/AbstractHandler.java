@@ -1,6 +1,7 @@
 package com.applet.common.strategy;
 
-import com.ykly.app.common.ResultModel;
+
+import com.applet.common.result.ResultModel;
 
 /**
  * @description: 策略抽象处理器

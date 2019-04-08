@@ -1,6 +1,7 @@
 package com.applet.common.strategy;
 
-import com.ykly.app.utils.SpringUtil;
+
+import com.applet.common.scoreHandler.SpringContextHolder;
 
 import java.util.Map;
 
@@ -36,6 +37,6 @@ public class HandlerContext {
         if (null == object) {
             throw new IllegalArgumentException("not found handler for type :" + type);
         }
-        return (AbstractHandler) SpringUtil.getBean(object.getClass());
+        return (AbstractHandler) SpringContextHolder.getBean(object.getClass());
     }
 }

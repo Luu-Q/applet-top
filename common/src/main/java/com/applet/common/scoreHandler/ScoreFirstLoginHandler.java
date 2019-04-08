@@ -1,12 +1,9 @@
 package com.applet.common.scoreHandler;
 
-import com.ykly.app.common.ResultModel;
-import com.ykly.app.common.strategy.AbstractHandler;
-import com.ykly.app.common.strategy.HandlerType;
-import com.ykly.app.couponAndscore.service.MemberScoreDetailService;
-import com.ykly.app.couponAndscore.vo.MemberGainScoreReq;
+import com.applet.common.result.ResultModel;
+import com.applet.common.strategy.AbstractHandler;
+import com.applet.common.strategy.HandlerType;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,19 +16,16 @@ import org.springframework.stereotype.Component;
 @HandlerType(MemberScoreConstant.FIRST_LOGIN)
 public class ScoreFirstLoginHandler extends AbstractHandler {
 
-    @Autowired
-    MemberScoreDetailService scoreDetailService;
 
     @Override
     public ResultModel handler(Class<?> clazz) {
         log.info("[积分]每日首次登录得积分 start...");
         try {
-            MemberGainScoreReq req = (MemberGainScoreReq) clazz.newInstance();
 
         } catch (Exception e) {
             log.error("[积分]每日首次登录得积分 error...");
         }
         log.info("[积分]每日首次登录得积分 end...");
-        return new ResultModel("每日首次登录得积分 逻辑处理");
+        return ResultModel.succWithData("每日首次登录得积分 逻辑处理");
     }
 }
