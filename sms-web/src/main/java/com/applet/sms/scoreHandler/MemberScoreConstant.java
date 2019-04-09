@@ -1,4 +1,4 @@
-package com.applet.common.scoreHandler;
+package com.applet.sms.scoreHandler;
 
 /**
  * @description: 积分规则类型

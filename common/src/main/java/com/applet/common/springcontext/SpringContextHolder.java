@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2015-2020 <a href="http://www.jeeplus.org/">JeePlus</a> All rights reserved.
  */
-package com.applet.common.scoreHandler;
+package com.applet.common.springcontext;
 
 
 import org.apache.commons.lang3.Validate;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.Map;
  * 以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候取出ApplicaitonContext.
  * 
  */
-@Service
+@Component
 @Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 

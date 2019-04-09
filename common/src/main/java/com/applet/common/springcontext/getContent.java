@@ -1,4 +1,4 @@
-package com.applet.common.scoreHandler;
+package com.applet.common.springcontext;
 
 import org.springframework.aop.framework.AdvisedSupport;
 import org.springframework.aop.framework.AopProxy;
@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+//@Service
 public class getContent implements ApplicationContextAware {
  
 	private static ApplicationContext applicationContext;

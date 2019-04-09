@@ -10,12 +10,6 @@ import com.applet.common.result.ResultModel;
  */
 public abstract class AbstractHandler {
 
-    abstract public ResultModel handler(Class<?> clazz);
+    abstract public ResultModel handler(BaseHandlerDto baseHandlerDto);
 
-    public <T> T get(Class<T> clz,Object o){
-        if(clz.isInstance(o)){
-            return clz.cast(o);
-        }
-        return null;
-    }
 }

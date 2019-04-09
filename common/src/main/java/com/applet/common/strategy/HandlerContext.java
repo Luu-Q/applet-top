@@ -1,7 +1,6 @@
 package com.applet.common.strategy;
 
-
-import com.applet.common.scoreHandler.SpringContextHolder;
+import com.applet.common.springcontext.SpringContextHolder;
 
 import java.util.Map;
 
@@ -12,31 +11,18 @@ import java.util.Map;
  */
 public class HandlerContext {
 
-//    private Map<String, Class> handlerMap;
-//
-//    public HandlerContext(Map<String, Class> handlerMap) {
-//        this.handlerMap = handlerMap;
-//    }
-//
-//    public AbstractHandler getInstance(String type) {
-//        Class clazz = handlerMap.get(type);
-//        if (null == clazz) {
-//            throw new IllegalArgumentException("not found handler for type :" + type);
-//        }
-//        return (AbstractHandler) SpringUtil.getBean(clazz);
-//    }
+    private Map<String, Class> handlerMap;
 
-    private Map<String, Object> handlerMap;
-
-    public HandlerContext(Map<String, Object> handlerMap) {
+    public HandlerContext(Map<String, Class> handlerMap) {
         this.handlerMap = handlerMap;
     }
 
     public AbstractHandler getInstance(String type) {
-        Object object = handlerMap.get(type);
-        if (null == object) {
+        Class clazz = handlerMap.get(type);
+        if (null == clazz) {
             throw new IllegalArgumentException("not found handler for type :" + type);
         }
-        return (AbstractHandler) SpringContextHolder.getBean(object.getClass());
+        return (AbstractHandler) SpringContextHolder.getBean(clazz);
     }
+
 }
