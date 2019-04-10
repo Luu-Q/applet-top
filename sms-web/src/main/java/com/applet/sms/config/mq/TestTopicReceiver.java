@@ -17,6 +17,7 @@ public class TestTopicReceiver {
 //    @RabbitListener(queues = RabbitMQConstant.REGISTER_QUEUE_NAME, containerFactory = "rabbitListenerContainerFactory")
     @RabbitHandler
     public void receiveRepayQueue(Message message) {
+
         try {
             String msg = new String(message.getBody());
 
