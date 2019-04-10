@@ -19,6 +19,7 @@ public class TestTopicReceiver {
     public void receiveRepayQueue(Message message) {
 
         try {
+
             String msg = new String(message.getBody());
 
             Object parse = JSONObject.parse(msg);
