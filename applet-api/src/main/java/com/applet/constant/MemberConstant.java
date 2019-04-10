@@ -1,4 +1,4 @@
-package com.applet.common.constant;
+package com.applet.constant;
 
 
 public class MemberConstant {

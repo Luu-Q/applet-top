@@ -2,7 +2,7 @@ package com.applet.service.wxauth;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.applet.common.constant.WxConstants;
+import com.applet.constant.WxConstants;
 import com.applet.common.result.ResultModel;
 import com.applet.wxace.WXBizDataCrypt;
 import com.applet.config.rest.RestTemplateUtils;

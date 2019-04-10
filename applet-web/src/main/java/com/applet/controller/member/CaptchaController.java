@@ -1,6 +1,6 @@
 package com.applet.controller.member;
 
-import com.applet.common.constant.MemberConstant;
+import com.applet.constant.MemberConstant;
 import com.applet.common.result.ResultModel;
 import com.applet.common.utils.RandomUtil;
 import com.google.code.kaptcha.Constants;

@@ -1,6 +1,6 @@
 package com.applet.service.member;
 
-import com.applet.common.constant.MemberConstant;
+import com.applet.constant.MemberConstant;
 import com.applet.model.member.TokenBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
