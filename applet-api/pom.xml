@@ -64,7 +64,7 @@
         </dependency>
         <dependency>
             <groupId>com.applet.amqp</groupId>
-            <artifactId>amqp-rabbitmq-starter</artifactId>
+            <artifactId>rabbitmq-spring-boot-starter</artifactId>
         </dependency>
 
     </dependencies>
