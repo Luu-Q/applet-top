@@ -7,11 +7,9 @@ import com.applet.common.httpclent.base.HttpForErpServiceIdEnum;
 import com.applet.common.httpclent.request.HotelCancelOrderRequest;
 import com.applet.common.httpclent.response.HotelCancelOrderResponse;
 import com.applet.common.utils.date.DateUtil;
-import com.applet.common.utils.sign.DigitalUtils;
 import com.applet.common.utils.sign.SignUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -26,39 +24,35 @@ import java.util.Map;
 @Service
 public class HttpServiceForRep {
     Logger logger = LoggerFactory.getLogger(getClass());
-    @Value("${erp.securety.app.api_key}")
-    private  String ERP_APP_API_KEY;
-    @Value("${erp.securety.app.secret_key}")
-    private  String ERP_APP_SECRET_KEY;
-    @Value("${erp.base.service.url}")
+    private String ERP_APP_API_KEY;
+    private String ERP_APP_SECRET_KEY;
     private String requestUrl;
 //    @Autowired
 //    private RestTemplateUtils restTemplateUtils;
 
-    private BaseServiceResp coreHttp(Class response, String serviceId, Object request){
+    private BaseServiceResp coreHttp(Class response, String serviceId, Object request) {
         try {
             String paramJson = paramsJson(request, ERP_APP_API_KEY, ERP_APP_SECRET_KEY);
             logger.info("++++++++++++++++++++++++Post请求开始++++++++++++++++++++++++++++++");
             logger.info("Post请求参数：" + paramJson);
-            logger.info("Post请求接口：" + requestUrl+serviceId);
+            logger.info("Post请求接口：" + requestUrl + serviceId);
 //            String resultJson = restTemplateUtils.lPostBody(requestUrl+serviceId, null, paramJson, null);
             String resultJson = "";
             logger.info("Post请求返回值：" + resultJson);
             BaseServiceResp bodyClass = JSON.parseObject(resultJson, BaseServiceResp.class);
-            if(bodyClass!=null&&bodyClass.getCode()==0){
-                if(null != bodyClass.getData()){
-                    Object bodyClassResponse  = JSON.parseObject(bodyClass.getData().toString(), response);
+            if (bodyClass != null && bodyClass.getCode() == 0) {
+                if (null != bodyClass.getData()) {
+                    Object bodyClassResponse = JSON.parseObject(bodyClass.getData().toString(), response);
                     bodyClass.setData(bodyClassResponse);
                 }
             }
-            logger.info("返回{}",JSON.toJSONString(bodyClass));
+            logger.info("返回{}", JSON.toJSONString(bodyClass));
             return bodyClass;
         } catch (Exception e) {
-            logger.warn("请求核心异常，接口交易码：{}, {}",serviceId,e);
+            logger.warn("请求核心异常，接口交易码：{}, {}", serviceId, e);
         }
         return null;
     }
-
 
 
     /**
