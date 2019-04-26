@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @create: 2019/4/8 10:34 AM
  */
 @Component
-@HandlerType(MemberScoreConstant.COLLECT_PRODUCT)
+@HandlerType(MemberScoreConstant.TASK_SCORE_FIRST_LOGIN)
 public class ScoreCollectProductHandler extends AbstractHandler {
 
 

@@ -7,7 +7,7 @@ spring:
     host: ${server.addressip}
     password: luning
     port: 6380
-    timeout: 1000ms
+    timeout: 3000ms
     lettuce:
       pool:
         min-idle: 0
