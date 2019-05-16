@@ -16,4 +16,7 @@ public interface CityMapper {
     @Update("update city set name = '北京市辖乐观',status=status+1 WHERE code='1101' and status=#{sta} ")
     int update(@Param("sta") int sta);
 
+    @Update("update city set name = '北京市辖乐观222',status=status+1 WHERE code='1101' ")
+    int update1(@Param("sta") int sta);
+
 }

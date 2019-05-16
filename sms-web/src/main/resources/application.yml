@@ -59,4 +59,15 @@ http:
 logging:
   config: classpath:logback-spring.xml
 
+timer:
+  sms-test:
+    servers: 127.0.0.1:8501,127.0.0.1:8401
+    cron: 0 0/5 * * * ?
+
+jpush:
+  app_key: f89b6de1fa040587f10002d9
+  master_secre: b5727fda9dec7f85893486cd
+  apns_production: false
+  max_retry_times: 5
+
 

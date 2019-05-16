@@ -9,6 +9,7 @@ import com.applet.sms.service.LockFailRetryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.Map;
 
@@ -24,14 +25,19 @@ public class LockFailRetryServiceImpl implements LockFailRetryService {
     CityMapper cityMapper;
 
 
-    @LockFailRetry
+
     @Transactional(rollbackFor = Exception.class)
+    @LockFailRetry
     @Override
     public ResultModel lockFailRetry() {
         Map<String, Object> cityNameByCode = cityMapper.getCityNameByCode();
+
+//        int update1 = cityMapper.update1((Integer) cityNameByCode.get("status"));
+
         int update = cityMapper.update((Integer) cityNameByCode.get("status"));
-        System.out.println("【更新了========================】");
+        System.out.println("【进来了========================】");
         if(update!=1){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             //如果更新失败就抛出去，重试
             throw new LockFailRetryException(ApiResultEnum.ERROR_TRY_AGAIN);
         }
