@@ -88,6 +88,10 @@
         </dependency>
         <!--阿里云内容安全 start-->
 
+        <!--jpush start-->
+
+        <!--jpush end-->
+
         <!--业务包start-->
         <dependency>
             <groupId>com.applet.sms</groupId>
