@@ -20,3 +20,6 @@ eureka:
     registryFetchIntervalSeconds: 30 #定时从Eureka Server拉取服务注册信息的间隔时间(s)
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname1}/eureka/,http://${eureka.instance.hostname2}/eureka/
+applet-sms: #Feign 如何结合 Ribbon 切换均衡算法
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

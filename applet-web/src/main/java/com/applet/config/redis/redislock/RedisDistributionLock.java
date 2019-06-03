@@ -4,10 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.JedisCommands;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -42,6 +45,7 @@ public class RedisDistributionLock {
 
     /**
      * 加锁,同时设置锁超时时间
+     * https://blog.csdn.net/qq_28397259/article/details/80839072
      *
      * @param key        分布式锁的key
      * @param expireTime 单位是ms，超时时间
@@ -53,6 +57,11 @@ public class RedisDistributionLock {
         long lockExpireTime = now + expireTime;
 
         //setnx
+        RedisCallback<String> callback = (connection) -> {
+            JedisCommands commands = (JedisCommands) connection.getNativeConnection();
+            String uuid = UUID.randomUUID().toString();
+            return commands.set(key, uuid, "NX", "PX", 20);
+        };
         boolean executeResult = redisTemplateForGeneralize.opsForValue().setIfAbsent(key, String.valueOf(lockExpireTime));
         logger.debug("redis lock debug, setnx. key:[{}], expireTime:[{}], executeResult:[{}]", key, expireTime, executeResult);
 
