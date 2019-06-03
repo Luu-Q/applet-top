@@ -1,4 +1,4 @@
-package com.applet.config.hikaricp;
+package com.applet.sms.config.hikaricp;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -20,7 +20,7 @@
         <module>applet-api</module>
         <module>applet-web</module>
         <module>chat-web</module>
-        <module>amqp-rabbitmq-starter</module>
+        <module>rabbitmq-spring-boot-starter</module>
     </modules>
 
     <groupId>com.applet</groupId>
@@ -217,7 +217,7 @@
             </dependency>
             <dependency>
                 <groupId>com.applet.amqp</groupId>
-                <artifactId>amqp-rabbitmq-starter</artifactId>
+                <artifactId>rabbitmq-spring-boot-starter</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <!--业务包end-->

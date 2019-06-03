@@ -36,22 +36,10 @@ public class HandlerProcessor implements BeanFactoryPostProcessor {
         });
     }
 
-
-
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-//        Map<String, Class> handlerMap = Maps.newHashMapWithExpectedSize(3);
-//        ClassScaner.scan(SCORE_HANDLER, HandlerType.class).forEach(clazz -> {
-//            String type = clazz.getAnnotation(HandlerType.class).value();
-//            handlerMap.put(type, clazz);
-//        });
         HandlerContext handlerContext = new HandlerContext(handlerMap);
         configurableListableBeanFactory.registerSingleton(HandlerContext.class.getName(), handlerContext);
-    }
-
-    //通过eventTypeId，也就是注解的值获取相应处理Handler的类名
-    public static Class getBeanNameByEventType(String eventTypeId) {
-        return handlerMap.get(eventTypeId);
     }
 
 }

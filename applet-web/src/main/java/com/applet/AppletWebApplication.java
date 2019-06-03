@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableEurekaClient
 @EnableSwagger2
 @SpringBootApplication(scanBasePackages = "com.applet.*")
-@MapperScan("com.applet.*.dao")
+@MapperScan("com.applet.*.dao.*")
 @Import({RabbitConfig.class})
 @EnableRabbit
 public class AppletWebApplication {
