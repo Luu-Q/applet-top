@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.mybatisplus.dao.ServiceItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.data.mybatisplus.entity.pojo.ServiceItem">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="parent_id" property="parentId" />
+        <result column="item_no" property="itemNo" />
+        <result column="displayorder" property="displayorder" />
+        <result column="item_path" property="itemPath" />
+        <result column="unit" property="unit" />
+        <result column="desall" property="desall" />
+        <result column="described" property="described" />
+        <result column="ifHour" property="ifHour" />
+        <result column="minHour" property="minHour" />
+        <result column="lockHour" property="lockHour" />
+        <result column="icon" property="icon" />
+        <result column="header_url" property="headerUrl" />
+        <result column="up_limit" property="upLimit" />
+        <result column="low_limit" property="lowLimit" />
+        <result column="man_num" property="manNum" />
+        <result column="need_area" property="needArea" />
+        <result column="default_val" property="defaultVal" />
+        <result column="is_whenever" property="isWhenever" />
+        <result column="gender" property="gender" />
+        <result column="status" property="status" />
+        <result column="is_del" property="isDel" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

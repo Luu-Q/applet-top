@@ -1,0 +1,19 @@
+server:
+  port: 9800
+  addressip: 52baojie.cn
+
+spring:
+  datasource:
+    hikari:
+      max-lifetime: 28770000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
+      maximum-pool-size: 10 #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+      minimum-idle: 5
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      connection-timeout: 0000
+      connection-test-query: SELECT 1
+    url: jdbc:mysql://${server.addressip}:3307/clean?useUnicode=true&characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.jdbc.Driver
+    username: aliluning
+    password: root
