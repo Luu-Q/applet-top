@@ -10,6 +10,8 @@ eureka:
     hostname1: eureka-node-1:8101
     hostname2: eureka-node-2:8102
     preferIpAddress: true #是否优先使用IP地址作为主机名的标识
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
     lease-renewal-interval-in-seconds: 30 #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除（缺省为30s）
     lease-expiration-duration-in-seconds: 90  #服务刷新时间配置，每隔这个时间会主动心跳一次（缺省为90s）
   client:

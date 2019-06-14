@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-06-11
  */
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/applet-zuul")
 public class ServiceItemController {
 
     @Autowired

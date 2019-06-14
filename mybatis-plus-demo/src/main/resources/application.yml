@@ -3,6 +3,8 @@ server:
   addressip: 52baojie.cn
 
 spring:
+  application:
+    name: mybatis-plus-demo
   datasource:
     hikari:
       max-lifetime: 28770000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
@@ -17,3 +19,18 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: aliluning
     password: root
+
+
+eureka:
+  instance:
+    hostname1: eureka-node-1:8101
+    hostname2: eureka-node-2:8102
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname1}/eureka/,http://${eureka.instance.hostname2}/eureka/

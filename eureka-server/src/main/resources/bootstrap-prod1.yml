@@ -7,14 +7,8 @@ spring:
 
 
 eureka:
-  server:
-    enableSelfPreservation: true
-    eviction-interval-timer-in-ms: 60000
   instance:
     hostname: eureka-node-1
-    preferIpAddress: true
   client:
-    registerWithEureka: true
-    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://eureka-node-2:8102/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

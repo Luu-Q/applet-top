@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-@RequestMapping("/test")
+@RequestMapping("/applet-zuul")
 @Controller
 @Configuration
 public class TestController {
@@ -105,6 +105,12 @@ public class TestController {
         // 方式二：指定实例的map
         Map<Integer, SkillUpgrade> linkedHashMap = listx.stream().collect(Collectors.toMap(SkillUpgrade::getLv,
                 SkillUpgrade -> SkillUpgrade, (key1, key2) -> key2, LinkedHashMap::new));
+    }
+
+    @GetMapping("/test-zuul")
+    @ResponseBody
+    public String testZuul() {
+        return "testZuul";
     }
 
 }
