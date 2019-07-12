@@ -212,6 +212,18 @@
                 <version>23.0</version>
             </dependency>
 
+            <!-- 二维码 -->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>3.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>3.2.0</version>
+            </dependency>
+
             <!--业务包start-->
             <dependency>
                 <groupId>com.applet.common</groupId>

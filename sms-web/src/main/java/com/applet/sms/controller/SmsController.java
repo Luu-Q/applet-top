@@ -1,7 +1,7 @@
 package com.applet.sms.controller;
 
 import com.applet.sms.client.SmsClient;
-import com.applet.sms.dto.SmsConfigBean;
+import com.applet.sms.entity.dto.SmsConfigBean;
 import com.applet.sms.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

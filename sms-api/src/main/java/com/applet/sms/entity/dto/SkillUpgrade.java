@@ -1,4 +1,4 @@
-package com.applet.sms.dto;
+package com.applet.sms.entity.dto;
 
 import lombok.Data;
 
