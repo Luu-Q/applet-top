@@ -30,15 +30,15 @@ public class PushService {
         pushRequest.setTargetValue("_YOUR_DEVICE_IDS_HERE"); //根据Target来设定，如Target=device, 则对应的值为 设备id1,设备id2. 多个值使用逗号分隔.(帐号与设备有一次最多100个的限制)
         pushRequest.setDeviceType("3"); // 设备类型deviceType 取值范围为:0~3. iOS设备: 0; Android设备: 1; 全部: 3, 这是默认值.
         // 推送配置
-        pushRequest.setType(1); // 0:表示消息(默认为0), 1:表示通知
-        pushRequest.setTitle(date); // 消息的标题
-        pushRequest.setBody("PushRequest body"); // 消息的内容
-        pushRequest.setSummary("PushRequest summary"); // 通知的摘要
-        // 推送配置: iOS
-        pushRequest.setiOSBadge("5"); // iOS应用图标右上角角标
-        pushRequest.setiOSMusic("default"); // iOS通知声音
-        pushRequest.setiOSExtParameters("{\"k1\":\"ios\",\"k2\":\"v2\"}"); //自定义的kv结构,开发者扩展用 针对iOS设备
-        pushRequest.setApnsEnv("DEV");
+//        pushRequest.setType(1); // 0:表示消息(默认为0), 1:表示通知
+//        pushRequest.setTitle(date); // 消息的标题
+//        pushRequest.setBody("PushRequest body"); // 消息的内容
+//        pushRequest.setSummary("PushRequest summary"); // 通知的摘要
+//        // 推送配置: iOS
+//        pushRequest.setiOSBadge("5"); // iOS应用图标右上角角标
+//        pushRequest.setiOSMusic("default"); // iOS通知声音
+//        pushRequest.setiOSExtParameters("{\"k1\":\"ios\",\"k2\":\"v2\"}"); //自定义的kv结构,开发者扩展用 针对iOS设备
+//        pushRequest.setApnsEnv("DEV");
         //pushRequest.setRemind(true); // 推送时设备不在线（既与移动推送的服务端的长连接通道不通），则这条推送会做为通知，通过苹果的APNs通道送达一次(发送通知时,Summary为通知的内容,Message不起作用)。注意：离线消息转通知仅适用于生产环境
         // 推送配置: Android
         //设置该参数后启动小米托管弹窗功能，此处指定通知点击后跳转的Activity（托管弹窗的前提条件：1. 继承小米辅助通道；2. storeOffline设为true
@@ -61,6 +61,6 @@ public class PushService {
             e.printStackTrace();
         }
         System.out.printf("RequestId: %s, ResponseId: %s\n",
-                pushResponse.getRequestId(), pushResponse.getResponseId());
+                pushResponse.getRequestId(), pushResponse.getMessageId());
     }
 }

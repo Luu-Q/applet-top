@@ -16,7 +16,8 @@ public class PushController {
 
     @GetMapping(value = "/test")
     public String test() {
-        return pushService.push();
+        pushService.push();
+        return "";
     }
 
 

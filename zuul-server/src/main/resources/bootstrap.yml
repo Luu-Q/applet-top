@@ -17,6 +17,10 @@ eureka:
       defaultZone: http://${eureka.instance.hostname1}/eureka/,http://${eureka.instance.hostname2}/eureka/
 
 zuul:
+  ribbon-isolation-strategy: thread #hystrix 隔离模式，默认信号量
+  thread-pool:
+    use-separate-thread-pools: true #每个路由分配一个线程池，默认公用一个
+    thread-pool-key-prefix: zuulgw #线程池前缀
   routes:
     applet-sms: #标识你服务的名字，这里可以自己定义，一般方便和规范来讲还是跟自己服务的名字一样
       path: /applet-zuul/** #服务映射的路径，通过这路径就可以从外部访问你的服务了，目的是为了不爆露你机器的IP，面向服务的路由了，给你选一个可用的出来，这里zuul是自动依赖hystrix，ribbon的，不是面向单机
@@ -25,3 +29,24 @@ zuul:
     mybatis-plus-demo:
       path: /applet-zuul/**
       serviceId: mybatis-plus-demo
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 10 #线程池大小，默认10
+      maximumSize: 200 #最大线程
+      allowMaximumSizeToDivergeFromCoreSize: true #开启最大线程
+      keepAliveTimeMinutes: 30 #最大线程空闲时间30分钟，默认1分钟
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 #超时时间
+
+
+
+# 端点管理 hystrixDashboard
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
