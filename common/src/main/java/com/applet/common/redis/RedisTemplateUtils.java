@@ -113,24 +113,32 @@ public class RedisTemplateUtils {
         redisTemplate.watch(key);
     }
 
-    /** 取消监控事务 */
+    /**
+     * 取消监控事务
+     */
     public void unwatch() {
         redisTemplate.unwatch();
     }
 
-    /** 组合命令 */
+    /**
+     * 组合命令
+     */
     public void multi() {
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.multi();
     }
 
-    /** 开启事务 */
+    /**
+     * 开启事务
+     */
     public List exec() {
 
         return redisTemplate.exec();
     }
 
-    /** 放弃事务 */
+    /**
+     * 放弃事务
+     */
     public void discard() {
 
         redisTemplate.discard();
@@ -172,7 +180,7 @@ public class RedisTemplateUtils {
      *
      * @param key
      * @param value
-     * @param time 过期时间，秒
+     * @param time  过期时间，秒
      * @return
      */
     public boolean set(String key, Object value, long time) {
@@ -271,8 +279,8 @@ public class RedisTemplateUtils {
     /**
      * 递增
      *
-     * @param key 键
-     * @param delta  要增加几(大于0)
+     * @param key   键
+     * @param delta 要增加几(大于0)
      * @return
      */
     public Long incr(String key, long delta) {

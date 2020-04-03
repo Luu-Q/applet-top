@@ -57,11 +57,11 @@ public class RedisDistributionLock {
         long lockExpireTime = now + expireTime;
 
         //setnx
-        RedisCallback<String> callback = (connection) -> {
+        /*RedisCallback<String> callback = (connection) -> {
             JedisCommands commands = (JedisCommands) connection.getNativeConnection();
             String uuid = UUID.randomUUID().toString();
             return commands.set(key, uuid, "NX", "PX", 20);
-        };
+        };*/
         boolean executeResult = redisTemplateForGeneralize.opsForValue().setIfAbsent(key, String.valueOf(lockExpireTime));
         logger.debug("redis lock debug, setnx. key:[{}], expireTime:[{}], executeResult:[{}]", key, expireTime, executeResult);
 

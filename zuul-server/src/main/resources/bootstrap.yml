@@ -14,21 +14,31 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname1}/eureka/,http://${eureka.instance.hostname2}/eureka/
+      defaultZone: http://${eureka.instance.hostname1}/eureka/,http://localhost:8101/eureka/
 
 zuul:
   ribbon-isolation-strategy: thread #hystrix 隔离模式，默认信号量
   thread-pool:
     use-separate-thread-pools: true #每个路由分配一个线程池，默认公用一个
     thread-pool-key-prefix: zuulgw #线程池前缀
-  routes:
-    applet-sms: #标识你服务的名字，这里可以自己定义，一般方便和规范来讲还是跟自己服务的名字一样
-      path: /applet-zuul/** #服务映射的路径，通过这路径就可以从外部访问你的服务了，目的是为了不爆露你机器的IP，面向服务的路由了，给你选一个可用的出来，这里zuul是自动依赖hystrix，ribbon的，不是面向单机
-      serviceId: applet-sms #这里一定要是你Eureka注册中心的服务的名称，是所以这里配置serviceId因为跟eureka结合了，如果单独使用zuul,那么就必须写自己机器的IP了，
-      #url:http://localhost:8080/  这样的不好就是写死IP了，万一这IP挂了，这高可用性，服务注册那套东西就用不起来了
-    mybatis-plus-demo:
-      path: /applet-zuul/**
-      serviceId: mybatis-plus-demo
+#  prefix: /bj #所有服务的统一公共前缀，一版没必要设置,除非老服务升级改造可能有统一前缀，添加该值不需要前端改请求路劲
+#  strip-prefix: false #配合prefix 使用，默认true,false的时候在zuul转发下游微服务的时候不会去掉前缀,例（x:8080/bj/xxx -> x:8081/bj/xxx,此时下游的真实路劲就是 /bj/xxx）
+  sensitive-headers: Cookie,Set-Cookie #忽略过滤Authorization ，默认3个都忽略，下游服务将接受不到该请求头
+#  ignored-services: mybatis-plus-demo #忽略掉某个服务，如果修改了微服务的routes path,就的微服务名path还可以访问，可进行忽略，也可直接忽略禁止访问该服务
+  ignored-patterns: /**/hello/** #忽略某个路劲的路由,多个逗号隔开
+#  routes:
+#    mybatis-plus-demo: #微服务名，标识你要修改路由的微服务ID
+#      path: /luning/** #微服务路由path,改过之后将不按微服务名路由，改为path路由（后面的**标识匹配任意路劲，path默认为微服务名）
+#      serviceId: mybatis-plus-demo #微服务serviceId,以/luning/** 的请求都转发到该服务
+#      stripPrefix: false #和全局的strip-prefix 功能类似，如果为false不过滤前缀（前缀代表path :path没配的话为默认微服务名），一版情况不需要改动
+#    mybatis-plus-demo: /luning/** #上面那种方式的简化写法，在是修改访问服务名的时候使用
+
+#Zuul内部默认使用了Ribbon来调用远程服务，
+#所以由于Ribbon的原因，在我们部署时，第一次经历zuul的调用往往会注册中心读取服务注册表，初始化Ribbon负载信息，这是一种懒加载的策略，
+#但是这个过程是很耗时的，尤其是服务过多的时候，为了避免这个问题，我们可以在启动的Zuul的时候就姐加载应用程序上下文信息。
+ribbon:
+  eager-load:
+    enabled: true #开启饥饿加载
 
 hystrix:
   threadpool:

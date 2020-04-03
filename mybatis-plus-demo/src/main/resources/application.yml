@@ -1,6 +1,6 @@
 server:
   port: 9800
-  addressip: 52baojie.cn
+  addressip: 47.104.225.254
 
 spring:
   application:
@@ -27,10 +27,7 @@ eureka:
     hostname2: eureka-node-2:8102
     preferIpAddress: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
   client:
-    registerWithEureka: true
-    fetchRegistry: true
-    healthcheck:
-      enabled: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname1}/eureka/,http://${eureka.instance.hostname2}/eureka/
+      defaultZone: http://${eureka.instance.hostname1}/eureka/,http://localhost:8101/eureka/

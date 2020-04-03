@@ -29,7 +29,6 @@ public class ExceptionAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Object handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
-        Ch
         logger.error("参数解析失败", e);
         return ResultModel.fail("[400] could_not_read_json");
     }

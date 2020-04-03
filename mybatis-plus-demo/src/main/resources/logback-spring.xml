@@ -8,11 +8,11 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!--<contextName>demo</contextName>-->
 
     <!-- 定义日志的根目录 -->
-    <property name="LOG_HOME" value="/data/logs"/>
+    <property name="LOG_HOME" value="/Users/ninglu/work/data/log"/>
     <!--&lt;!&ndash; 定义日志文件名称 &ndash;&gt;-->
     <!--<property name="appName" value="myHome-springboot"></property>-->
     <!--APP名-->
-    <property name="APP_NAME" value="clean-applet"/>
+    <property name="APP_NAME" value="mybatis-plus"/>
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <!--

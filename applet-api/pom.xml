@@ -62,11 +62,6 @@
             <groupId>com.applet.common</groupId>
             <artifactId>common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.applet.amqp</groupId>
-            <artifactId>rabbitmq-spring-boot-starter</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
